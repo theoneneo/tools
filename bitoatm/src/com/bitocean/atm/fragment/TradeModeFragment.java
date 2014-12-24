@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
+import com.bitocean.atm.RedeemQRActivity;
+import com.bitocean.atm.SellQRActivity;
 import com.bitocean.atm.TradeModeActivity;
 /**
  * @author bing.liu
@@ -80,12 +82,12 @@ public class TradeModeFragment extends NodeFragment {
 	}
 
 	private void goToSellModeActivity() {
-		Intent intent = new Intent(getActivity(), TradeModeActivity.class);
+		Intent intent = new Intent(getActivity(), SellQRActivity.class);
 		startActivity(intent);
 	}
 	
 	private void goToQRModeActivity() {
-		Intent intent = new Intent(getActivity(), TradeModeActivity.class);
+		Intent intent = new Intent(getActivity(), RedeemQRActivity.class);
 		startActivity(intent);
 	}
 }

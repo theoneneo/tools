@@ -11,6 +11,6 @@ import java.util.ArrayList;
  *
  */
 public class TypeRateStruct implements Serializable{
-	public String typeString;
-	public ArrayList<RateStruct> typeRateStructs = new ArrayList<RateStruct>();
+	public String currency_typeString;
+	public ArrayList<RateStruct> rateStructs = new ArrayList<RateStruct>();
 }

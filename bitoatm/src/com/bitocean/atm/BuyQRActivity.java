@@ -1,5 +1,6 @@
 package com.bitocean.atm;
 
+import com.bitocean.atm.fragment.BuyCountFragment;
 import com.bitocean.atm.fragment.BuyQRFragment;
 import com.bitocean.atm.fragment.UserLoginFragment;
 
@@ -20,6 +21,6 @@ public class BuyQRActivity extends BaseTimerActivity {
 
 	private void initUI() {
 		buyQRFragment = (BuyQRFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.buy_QR_fragment);
+				.findFragmentById(R.id.buy_qr_fragment);
 	}
 }

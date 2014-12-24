@@ -18,11 +18,11 @@ import com.bitocean.atm.TradeModeActivity;
  * @author bing.liu
  * 
  */
-public class BuyQRFragment extends NodeFragment {
+public class BuyCountFragment extends NodeFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_buy_qr, null);
+		View v = mInflater.inflate(R.layout.fragment_buy_count, null);
 		initView(v);
 		return v;
 	}
@@ -39,7 +39,7 @@ public class BuyQRFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				getActivity().finish();
+				getActivity().getSupportFragmentManager().popBackStack();
 			}
 		});
 
@@ -49,8 +49,10 @@ public class BuyQRFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				BuyCountFragment fragment = new BuyCountFragment();
+				ConfirmFragment fragment = new ConfirmFragment();
 				Bundle b = new Bundle();
+				b.putSerializable("bit_num", "");
+				b.putSerializable("currency_num", "");
 				fragment.setArguments(b);
 				getActivity()
 						.getSupportFragmentManager()
@@ -58,7 +60,7 @@ public class BuyQRFragment extends NodeFragment {
 						.setTransition(
 								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 						.add(R.id.container, fragment)
-						.addToBackStack("buyqrfragment").commit();
+						.addToBackStack("buycountfragment").commit();
 			}
 		});
 	}

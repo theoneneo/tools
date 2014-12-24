@@ -59,14 +59,17 @@ public class ProtocolDataOutput {
 		return null;
 	}
 	
-	public static JSONObject getRateList(ArrayList<String> bitType) throws JSONException {
+	public static JSONObject getRateList() throws JSONException {
 		try {
 			JSONObject output = new JSONObject();
 			JSONArray rate_list = new JSONArray();
-			for (String type:bitType) {
+			for (String type:AppManager.bitType) {
 				rate_list.put(type);
 			}
 			output.put("get_rate_list", rate_list);
+			output.put("uuid", AppManager.uuidString);
+			output.put("exchange", AppManager.exchangeString);
+			output.put("currency_type", AppManager.currency_typeString);
 			return output;
 		} catch (JSONException ex) {
 			throw new RuntimeException(ex);

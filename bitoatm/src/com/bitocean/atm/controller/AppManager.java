@@ -29,11 +29,14 @@ public class AppManager extends BaseManager {
 	public static boolean isLoopTime = true;
 	public static int loopTimer = LOOP_TIMER;
 	public static String public_keyString = null;
+	public static String exchangeString = "bitcocean";
+	public static String currency_typeString = "JPY";
 	public static int versionCode = 0;
 	public static String versionNameString = null;
 	public static String uuidString = null;
 	public static ArrayList<String> bitType = new ArrayList<String>();
-	public static ArrayList<TypeRateStruct> typeRateStructs = new ArrayList<TypeRateStruct>();
+	public static TypeRateStruct typeRateStructs = new TypeRateStruct();
+	//[bitcocean "btce","okcoin","huobi","btcc","bitstamp","bitfinex"]:
 	
 	public ATMReceiver atmReceiver;
 	public ATMService mService;

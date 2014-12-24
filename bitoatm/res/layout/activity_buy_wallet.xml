@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <fragment
-        android:id="@+id/user_login_fragment"
-        android:name="com.bitocean.atm.fragment.UserLoginFragment"
+        android:id="@+id/buy_count_fragment"
+        android:name="com.bitocean.atm.fragment.BuyCountFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -2,13 +2,16 @@ package com.bitocean.atm.protocol;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.bitocean.atm.controller.AppManager;
 import com.bitocean.atm.struct.LoginAdminStruct;
 import com.bitocean.atm.struct.LoginUserStruct;
+import com.bitocean.atm.struct.RateStruct;
 import com.bitocean.atm.struct.VerifyCodeStruct;
+
 /**
  * @author bing.liu
  * 
@@ -44,6 +47,7 @@ public class ProtocolDataInput {
 			LoginUserStruct struct = new LoginUserStruct();
 			struct.resutlString = obj.getString("result");
 			struct.resonString = obj.getString("reson");
+			struct.userTypeString = obj.getString("type");
 			struct.levelString = obj.getString("level");
 			return struct;
 		} catch (JSONException ex) {
@@ -69,16 +73,32 @@ public class ProtocolDataInput {
 		}
 		return null;
 	}
-	
-	public static void parseRateListToJson(JSONObject obj)
-			throws JSONException {
+
+	public static void parseRateListToJson(JSONObject obj) throws JSONException {
 		if (obj == null) {
 			return;
 		}
 		try {
-			VerifyCodeStruct struct = new VerifyCodeStruct();
-			struct.resutlString = obj.getString("result");
-			struct.resonString = obj.getString("reson");
+			JSONArray arrays = obj.getJSONArray("result");
+			if (arrays == null || arrays.length() == 0)
+				return;
+
+			AppManager.typeRateStructs.rateStructs.clear();
+			for (int i = 0; i < arrays.length(); i++) {
+				JSONObject item = (JSONObject) arrays.opt(i);
+				RateStruct struct = new RateStruct();
+				struct.bit_type = item.getString("bit_type");
+				struct.currency_type = item.getString("currency_type");
+				struct.bit_rate = item.getDouble("bit_rate");
+				struct.currency_rate = item.getDouble("currency_rate");
+				struct.poundage_buy = item.getDouble("poundage_buy");
+				struct.poundage_sell = item.getDouble("poundage_sell");
+				struct.type_limit = item.getDouble("type_limit_limit");
+				struct.threshold_min = item.getDouble("threshold_min");
+				struct.threshold_max = item.getDouble("threshold_max");
+				AppManager.typeRateStructs.currency_typeString = struct.currency_type;
+				AppManager.typeRateStructs.rateStructs.add(struct);
+			}
 			return;
 		} catch (JSONException ex) {
 		} catch (Exception e) {
@@ -86,21 +106,4 @@ public class ProtocolDataInput {
 		}
 		return;
 	}
-	
-//	JSONTokener jsonParser = new JSONTokener(input);
-//	JSONObject obj = (JSONObject) jsonParser.nextValue();
-//	JSONArray arrays = obj.getJSONArray("receiver_list");
-//	if (arrays == null)
-//		return null;
-//	PersonManager.getInstance().getReceiverList().clear();
-//	for (int i = 0; i < arrays.length(); i++) {
-//		UserInfo u = new UserInfo();
-//		JSONObject item =  (JSONObject) arrays.opt(i);
-//		u.user_id = Utf8Code.utf8Decode(item.getString("user_id"));
-//		u.nick_name = Utf8Code.utf8Decode(item.getString("nick_name"));
-//		if(u.user_id.equals(InfoCommApp.user_id))
-//			continue;
-//		PersonManager.getInstance().getReceiverList()
-//				.add(u);
-//	}
 }

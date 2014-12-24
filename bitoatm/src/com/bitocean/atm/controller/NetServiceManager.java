@@ -212,11 +212,11 @@ public class NetServiceManager extends BaseManager {
 		mQueue.start();
 	}
 
-	public void getRateList(ArrayList<String> bitType) {
+	public void getRateList() {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
 		try {
-			JSONObject obj = ProtocolDataOutput.getRateList(bitType);
+			JSONObject obj = ProtocolDataOutput.getRateList();
 			mQueue.add(new JsonObjectRequest(Method.POST, NET_GET_RATE_LIST,
 					obj, new Listener() {
 

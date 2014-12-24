@@ -12,5 +12,6 @@ import java.io.Serializable;
 public class LoginUserStruct implements Serializable{
 	public String resutlString;
 	public String resonString;
+	public String userTypeString;
 	public String levelString;
 }
