@@ -71,7 +71,7 @@ public class WifiSettingFragment extends NodeFragment {
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
-		cancelButton.setText(R.string.cancel);
+		cancelButton.setText(R.string.back);
 		cancelButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -82,7 +82,7 @@ public class WifiSettingFragment extends NodeFragment {
 
 		Button nextButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.right_btn);
-		nextButton.setText(R.string.next);
+		nextButton.setText(R.string.administrator);
 		nextButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -93,7 +93,7 @@ public class WifiSettingFragment extends NodeFragment {
 						.setTransition(
 								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 						.add(R.id.container, new AdminLoginFragment())
-						.addToBackStack("admin").commit();
+						.addToBackStack("wifiset").commit();
 			}
 		});
 	}

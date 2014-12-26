@@ -115,7 +115,7 @@ public class AdminLoginFragment extends NodeFragment {
 						.setTransition(
 								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 						.add(R.id.container, keyFragment)
-						.addToBackStack("keyfragment").commit();
+						.addToBackStack("adminfragment").commit();
 			} else if ("fail".equals(struct.resutlString)) {
 				new Util(getActivity()).showFeatureToast(struct.resonString);
 			}

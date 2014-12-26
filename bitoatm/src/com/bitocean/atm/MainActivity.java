@@ -1,5 +1,6 @@
 package com.bitocean.atm;
 
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,8 +13,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
@@ -106,6 +109,21 @@ public class MainActivity extends BaseTimerActivity {
 				clickLogoSet();
 			}
 		});
+		
+		Button language_btn = (Button)findViewById(R.id.language_btn);
+		language_btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				changeLanguage();
+			}
+		});
+	}
+	
+	private void changeLanguage(){
+		Intent intent = new Intent(this, LanguageActivity.class);
+		startActivity(intent);
+		finish();
 	}
 	
 	private void clickLogoSet(){

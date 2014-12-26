@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:clickable="true"
-        layout="@layout/view_title_image" />
+        layout="@layout/view_title_image"
+        android:clickable="true" />
 
     <include
         android:id="@+id/buy_rate_text"
@@ -61,6 +61,11 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_large_size" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/language_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <include
         android:layout_width="match_parent"

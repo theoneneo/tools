@@ -48,6 +48,7 @@ public class BitOceanATMApp extends Application {
 		for (Activity ac : list) {
 			if (ac == activity) {
 				list.remove(ac);
+				return;
 			}
 		}
 	}

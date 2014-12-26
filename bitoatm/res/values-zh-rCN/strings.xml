@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
 	    
-	<string name="buy">Buy</string>
+	<string name="buy">买</string>
 	<string name="sell">Sell</string>
 	<string name="unit_bit">BIT</string>
 	<string name="unit_money">RMB</string>
@@ -44,7 +44,7 @@
 	<string name="trade_sell_pw_prompt">Sell print wallet</string>
 	<string name="scan_text">Please QR</string>	
 	
-	<string name="administrator">Administrator</string>
+	
 	<string name="cancel">Cancel</string>
 	<string name="next">Next</string>
 	<string name="ok">OK</string>

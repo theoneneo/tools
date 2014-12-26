@@ -69,7 +69,7 @@ public class KeyFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-
+				
 			}
 		});
 	}
