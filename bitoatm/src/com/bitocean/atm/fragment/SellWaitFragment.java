@@ -18,11 +18,11 @@ import com.bitocean.atm.TradeModeActivity;
  * @author bing.liu
  * 
  */
-public class SellCountFragment extends NodeFragment {
+public class SellWaitFragment extends NodeFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_sell_count, null);
+		View v = mInflater.inflate(R.layout.fragment_sell_wait, null);
 		initView(v);
 		return v;
 	}
@@ -49,7 +49,7 @@ public class SellCountFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				SellQRCodeFragment fragment = new SellQRCodeFragment();
+				ConfirmFragment fragment = new ConfirmFragment();
 				Bundle b = new Bundle();
 				b.putSerializable("bit_num", "");
 				b.putSerializable("currency_num", "");

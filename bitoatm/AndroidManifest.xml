@@ -114,7 +114,10 @@
 
         <meta-data
             android:name="DTM_CURRENCY"
-            android:value="AUD" />
+            android:value="JPY" />
+        <meta-data
+            android:name="DTM_STATE"
+            android:value="JAPAN" />        
         <!-- umeng -->
         <meta-data
             android:name="UMENG_APPKEY"

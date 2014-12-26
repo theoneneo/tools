@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -15,16 +16,14 @@ import com.bitocean.atm.BitOceanATMApp;
 import com.bitocean.atm.service.ATMReceiver;
 import com.bitocean.atm.service.ATMService;
 import com.bitocean.atm.struct.TypeRateStruct;
-
-
 /**
  * @author bing.liu
  *
  */
 public class AppManager extends BaseManager {
-	public final static int LOOP_TIMER = 300;
-	
 	private static AppManager mInstance;
+
+	public final static int LOOP_TIMER = 300;
 	public static boolean isAdmin = false;
 	public static boolean isLoopTime = true;
 	public static int loopTimer = LOOP_TIMER;
@@ -34,6 +33,8 @@ public class AppManager extends BaseManager {
 	public static int versionCode = 0;
 	public static String versionNameString = null;
 	public static String uuidString = null;
+	public static String DTM_CURRENCY = "RMB";
+	public static String DTM_STATE = "CHINA";
 	public static ArrayList<String> bitType = new ArrayList<String>();
 	public static TypeRateStruct typeRateStructs = new TypeRateStruct();
 	//[bitcocean "btce","okcoin","huobi","btcc","bitstamp","bitfinex"]:
@@ -76,6 +77,22 @@ public class AppManager extends BaseManager {
 		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		
+		ApplicationInfo appInfo = null;
+		try {
+			appInfo = BitOceanATMApp.getApplication().getPackageManager()  
+	                .getApplicationInfo(BitOceanATMApp.getApplication().getPackageName(),   
+	                        PackageManager.GET_META_DATA);
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(appInfo != null){
+			AppManager.DTM_CURRENCY = appInfo.metaData.getString("DTM_CURRENCY");
+			AppManager.DTM_STATE = appInfo.metaData.getString("DTM_STATE");
 		}
 		
 		if(pi != null){

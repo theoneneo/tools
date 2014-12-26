@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
+
 /**
  * @author bing.liu
  * 
@@ -63,8 +64,9 @@ public class WifiSettingFragment extends NodeFragment {
 				startActivityForResult(mIntent, 0);
 			}
 		});
-		
-		TextView titleTextView = (TextView)v.findViewById(R.id.title_text).findViewById(R.id.view_text);
+
+		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
+				.findViewById(R.id.view_text);
 		titleTextView.setText(R.string.wifi_prompt);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)

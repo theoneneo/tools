@@ -1,5 +1,6 @@
 package com.bitocean.atm;
 
+import com.bitocean.atm.fragment.SellCountFragment;
 import com.bitocean.atm.fragment.TradeModeFragment;
 
 import android.os.Bundle;
@@ -9,17 +10,17 @@ import android.os.Bundle;
  * 
  */
 public class SellQRActivity extends BaseTimerActivity {
-	private TradeModeFragment tradeModeFragment;
+	private SellCountFragment sellCountFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_trade);
+		setContentView(R.layout.activity_sell);
 		initUI();
 	}
 
 	private void initUI() {
-		tradeModeFragment = (TradeModeFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.trade_mode_fragment);
+		sellCountFragment = (SellCountFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.sell_count_fragment);
 	}
 }

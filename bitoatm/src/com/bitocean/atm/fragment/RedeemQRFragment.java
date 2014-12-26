@@ -18,7 +18,7 @@ import com.bitocean.atm.TradeModeActivity;
  * @author bing.liu
  * 
  */
-public class SellCountFragment extends NodeFragment {
+public class RedeemQRFragment extends NodeFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());

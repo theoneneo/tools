@@ -1,5 +1,6 @@
 package com.bitocean.atm;
 
+import com.bitocean.atm.fragment.RedeemQRFragment;
 import com.bitocean.atm.fragment.TradeModeFragment;
 
 import android.os.Bundle;
@@ -9,17 +10,17 @@ import android.os.Bundle;
  * 
  */
 public class RedeemQRActivity extends BaseTimerActivity {
-	private TradeModeFragment tradeModeFragment;
+	private RedeemQRFragment redeemQRFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_trade);
+		setContentView(R.layout.activity_redeem_qr);
 		initUI();
 	}
 
 	private void initUI() {
-		tradeModeFragment = (TradeModeFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.trade_mode_fragment);
+		redeemQRFragment = (RedeemQRFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.redeem_qr_fragment);
 	}
 }
