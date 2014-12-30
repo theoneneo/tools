@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bitocean.atm.CameraActivity;
 import com.bitocean.atm.R;
+import com.bitocean.atm.util.Util;
 /**
  * @author bing.liu
  * 
@@ -79,6 +80,8 @@ public class RegisterPhotoFragment extends NodeFragment {
 									FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 							.add(R.id.container, fragment)
 							.addToBackStack("registerphotofragment").commit();
+				}else{
+					new Util(getActivity()).showFeatureToast(R.string.register_photo_error);
 				}
 			}
 		});

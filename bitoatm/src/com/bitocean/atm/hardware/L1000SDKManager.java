@@ -89,6 +89,10 @@ public class L1000SDKManager extends BaseManager {
 		if (mthread != null && !mthread.isInterrupted())
 			mthread.interrupt();
 	}
+	
+	public void getBoxThickness(){
+		
+	}
 
 	public interface onDispenseListener {
 		public void onDispenseFinished();

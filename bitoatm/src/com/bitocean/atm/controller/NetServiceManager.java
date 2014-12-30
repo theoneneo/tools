@@ -42,6 +42,7 @@ public class NetServiceManager extends BaseManager {
 	private static final String NET_REGISTER_USER = NET_SERVER + "";
 	private static final String NET_LOGIN_USER = NET_SERVER + "";
 	private static final String NET_GET_RATE_LIST = NET_SERVER + "";
+	private static final String NET_REDEEM_CONFIRM = NET_SERVER + "";
 
 	private NetServiceManager(Application app) {
 		super(app);
@@ -212,11 +213,11 @@ public class NetServiceManager extends BaseManager {
 		mQueue.start();
 	}
 
-	public void getRateList() {
+	public void getRateList(ArrayList<String> bitType) {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
 		try {
-			JSONObject obj = ProtocolDataOutput.getRateList();
+			JSONObject obj = ProtocolDataOutput.getRateList(bitType);
 			mQueue.add(new JsonObjectRequest(Method.POST, NET_GET_RATE_LIST,
 					obj, new Listener() {
 
@@ -245,6 +246,49 @@ public class NetServiceManager extends BaseManager {
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
 											ATMBroadCastEvent.EVENT_GET_RATE_LIST_FAIL,
+											arg0.getMessage()));
+						}
+					}));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mQueue.start();
+	}
+	
+	public void redeemConfirm(String redeemString){
+		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
+				.getContext());
+		try {
+			JSONObject obj = ProtocolDataOutput.redeemConfirm(redeemString);
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_REDEEM_CONFIRM,
+					obj, new Listener() {
+
+						@Override
+						public void onResponse(Object arg0) {
+							// TODO Auto-generated method stub
+							try {
+								ProtocolDataInput
+										.parseRedeemConfirmToJson((JSONObject) arg0);
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_SUCCESS));
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_FAIL,
+												e.getMessage()));
+							}
+						}
+					}, new ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError arg0) {
+							// TODO Auto-generated method stub
+							EventBus.getDefault()
+									.post(new ATMBroadCastEvent(
+											ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_FAIL,
 											arg0.getMessage()));
 						}
 					}));

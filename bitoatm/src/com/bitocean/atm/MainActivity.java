@@ -1,43 +1,31 @@
 package com.bitocean.atm;
 
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.bitocean.atm.service.ATMBroadCastEvent;
-import de.greenrobot.event.EventBus;
+import com.bitocean.atm.controller.AppManager;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 /**
  * @author bing.liu
- *
+ * 
  */
 public class MainActivity extends BaseTimerActivity {
 	private TextView buyActionText, buyBitValueText, buyBitUnitText,
 			buyMoneyValueText, buyMoneyUnitTextView, sellActionText,
 			sellBitValueText, sellBitUnitText, sellMoneyValueText,
 			sellMoneyUnitTextView;
-	
+
 	private boolean isClick = false;
 	private int clickNum = 0;
 	private Timer timer;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +33,12 @@ public class MainActivity extends BaseTimerActivity {
 		setContentView(R.layout.activity_main);
 		initUI();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -67,7 +55,7 @@ public class MainActivity extends BaseTimerActivity {
 				.findViewById(R.id.money_value_text);
 		buyMoneyUnitTextView = (TextView) findViewById(R.id.buy_rate_text)
 				.findViewById(R.id.money_unit_text);
-		
+
 		sellActionText = (TextView) findViewById(R.id.sell_rate_text)
 				.findViewById(R.id.action_text);
 		sellBitValueText = (TextView) findViewById(R.id.sell_rate_text)
@@ -78,21 +66,20 @@ public class MainActivity extends BaseTimerActivity {
 				.findViewById(R.id.money_value_text);
 		sellMoneyUnitTextView = (TextView) findViewById(R.id.sell_rate_text)
 				.findViewById(R.id.money_unit_text);
-		
+
 		buyActionText.setText(R.string.buy);
 		buyBitValueText.setText("1");
 		buyBitUnitText.setText(R.string.unit_bit);
 		buyMoneyValueText.setText("");
 		buyMoneyUnitTextView.setText(R.string.unit_money);
-		
+
 		sellActionText.setText(R.string.sell);
 		sellBitValueText.setText("1");
 		sellBitUnitText.setText(R.string.unit_bit);
 		sellMoneyValueText.setText("");
 		sellMoneyUnitTextView.setText(R.string.unit_money);
-		
-		
-		RelativeLayout clickLayout = (RelativeLayout)findViewById(R.id.click_layout);
+
+		RelativeLayout clickLayout = (RelativeLayout) findViewById(R.id.click_layout);
 		clickLayout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -100,8 +87,8 @@ public class MainActivity extends BaseTimerActivity {
 				goToUserLoginActivity();
 			}
 		});
-		
-		View logo = (View)findViewById(R.id.logo);
+
+		View logo = (View) findViewById(R.id.logo);
 		logo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -109,8 +96,8 @@ public class MainActivity extends BaseTimerActivity {
 				clickLogoSet();
 			}
 		});
-		
-		Button language_btn = (Button)findViewById(R.id.language_btn);
+
+		Button language_btn = (Button) findViewById(R.id.language_btn);
 		language_btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -119,42 +106,42 @@ public class MainActivity extends BaseTimerActivity {
 			}
 		});
 	}
-	
-	private void changeLanguage(){
+
+	private void changeLanguage() {
 		Intent intent = new Intent(this, LanguageActivity.class);
 		startActivity(intent);
 		finish();
 	}
-	
-	private void clickLogoSet(){
-		if(isClick){
+
+	private void clickLogoSet() {
+		if (isClick) {
 			clickNum++;
-			if(clickNum >= 7){
+			if (clickNum >= 7) {
 				timer.cancel();
 				goToSettingActivity();
 				return;
-			}	
-		}else{
+			}
+		} else {
 			isClick = true;
-	        timer = new Timer();
-	        timer.schedule(new RemindTask(), 3*1000);
-	        clickNum++;
+			timer = new Timer();
+			timer.schedule(new RemindTask(), 3 * 1000);
+			clickNum++;
 		}
 	}
-	
-    class RemindTask extends TimerTask {
-        public void run() {
-        	isClick = false;
-            timer.cancel();
-        }
-    }
-	
-	private void goToUserLoginActivity(){
-		Intent intent = new Intent(this, UserActivity.class);
+
+	class RemindTask extends TimerTask {
+		public void run() {
+			isClick = false;
+			timer.cancel();
+		}
+	}
+
+	private void goToUserLoginActivity() {
+		Intent intent = new Intent(this, TradeModeActivity.class);
 		startActivity(intent);
 	}
-	
-	private void goToSettingActivity(){
+
+	private void goToSettingActivity() {
 		Intent intent = new Intent(this, SettingActivity.class);
 		startActivity(intent);
 	}

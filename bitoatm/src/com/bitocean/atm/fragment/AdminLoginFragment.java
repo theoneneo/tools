@@ -33,6 +33,8 @@ public class AdminLoginFragment extends NodeFragment {
 
 	@Override
 	public void onDestroy() {
+		if(progressDialog != null)
+			progressDialog.dismiss();
 		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 	}
@@ -107,7 +109,7 @@ public class AdminLoginFragment extends NodeFragment {
 			if ("success".equals(struct.resutlString)) {
 				KeyFragment keyFragment = new KeyFragment();
 				Bundle b = new Bundle();
-				b.putSerializable("struct", struct);
+				b.putSerializable("loginadminstruct", struct);
 				keyFragment.setArguments(b);
 				getActivity()
 						.getSupportFragmentManager()

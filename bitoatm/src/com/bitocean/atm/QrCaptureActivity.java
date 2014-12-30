@@ -3,6 +3,7 @@ package com.bitocean.atm;
 import java.io.IOException;
 import java.util.Vector;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
@@ -88,12 +89,12 @@ public class QrCaptureActivity extends BaseTimerActivity implements Callback {
 		if (resultString.equals("")) {
 			new Util(this).showFeatureToast("");
 		}else {
-//			Intent resultIntent = new Intent();
-//			Bundle bundle = new Bundle();
-//			bundle.putString("result", resultString);
-//			bundle.putParcelable("bitmap", barcode);
-//			resultIntent.putExtras(bundle);
-//			this.setResult(RESULT_OK, resultIntent);
+			Intent resultIntent = new Intent();
+			Bundle bundle = new Bundle();
+			bundle.putString("result", resultString);
+			bundle.putParcelable("bitmap", barcode);
+			resultIntent.putExtras(bundle);
+			setResult(RESULT_OK, resultIntent);
 		}
 	}
 	

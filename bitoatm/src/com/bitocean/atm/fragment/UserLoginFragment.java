@@ -35,6 +35,8 @@ public class UserLoginFragment extends NodeFragment {
 
 	@Override
 	public void onDestroy() {
+		if(progressDialog != null)
+			progressDialog.dismiss();
 		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 	}
@@ -72,7 +74,7 @@ public class UserLoginFragment extends NodeFragment {
 				.setTransition(
 						FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 				.add(R.id.container, new RegisterPhotoFragment())
-				.addToBackStack("register_photo").commit();
+				.addToBackStack("userlogin").commit();
 			}
 		});
 
@@ -122,7 +124,7 @@ public class UserLoginFragment extends NodeFragment {
 			}
 			LoginUserStruct struct = (LoginUserStruct) event.getObject();
 			if ("success".equals(struct.resutlString)) {
-				goToTradeModeActivity();
+				goToTradeModeActivity(struct);
 			} else if ("fail".equals(struct.resutlString)) {
 				new Util(getActivity()).showFeatureToast(struct.resonString);
 			}
@@ -140,8 +142,10 @@ public class UserLoginFragment extends NodeFragment {
 		}
 	}
 	
-	private void goToTradeModeActivity(){
+	private void goToTradeModeActivity(LoginUserStruct struct){
 		Intent intent = new Intent(getActivity(), TradeModeActivity.class);
+		intent.putExtra("loginuserstruct", struct);
 		startActivity(intent);
+		getActivity().finish();
 	}
 }

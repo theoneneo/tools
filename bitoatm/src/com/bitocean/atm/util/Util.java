@@ -40,6 +40,17 @@ public class Util {
         toast.show();	
 	}
 	
+	public void showFeatureToast(int id) {
+		TextView text = new TextView(mContext);
+        text.setText(mContext.getString(id));
+        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        text.setBackgroundColor(Color.BLACK);
+        Toast toast = new Toast(mContext);
+        toast.setView(text);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();	
+	}
+	
 	public void showLog(String log){
 		ApplicationInfo info = AppManager.getContext().getApplicationInfo();
 	    if(0!=((info.flags) & ApplicationInfo.FLAG_DEBUGGABLE)){

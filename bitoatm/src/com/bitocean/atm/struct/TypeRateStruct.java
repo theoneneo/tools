@@ -11,6 +11,10 @@ import java.util.ArrayList;
  *
  */
 public class TypeRateStruct implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6129413418524975053L;
 	public String currency_typeString;
 	public ArrayList<RateStruct> rateStructs = new ArrayList<RateStruct>();
 }

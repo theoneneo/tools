@@ -87,7 +87,7 @@ public class ATMService extends Service {
 		Thread rateThread = new Thread() {
 			public void run() {
 				while (true) {
-					NetServiceManager.getInstance().getRateList();
+					NetServiceManager.getInstance().getRateList(AppManager.bitType);
 					try {
 						sleep(60000);
 					} catch (InterruptedException e) {

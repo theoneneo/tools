@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.bitocean.atm.R;
 import com.bitocean.atm.RedeemQRActivity;
 import com.bitocean.atm.SellQRActivity;
-import com.bitocean.atm.TradeModeActivity;
+import com.bitocean.atm.UserActivity;
+import com.bitocean.atm.controller.AppManager;
+
 /**
  * @author bing.liu
  * 
@@ -33,13 +35,19 @@ public class TradeModeFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				getActivity()
-						.getSupportFragmentManager()
-						.beginTransaction()
-						.setTransition(
-								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-						.add(R.id.container, new BuyModeFragment())
-						.addToBackStack("buymode").commit();
+				if (AppManager.DTM_STATE.equals("JAPAN")) {
+					getActivity()
+							.getSupportFragmentManager()
+							.beginTransaction()
+							.setTransition(
+									FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+							.add(R.id.container, new BuyModeFragment())
+							.addToBackStack("trademode").commit();
+				} else {
+					Intent intent = new Intent(getActivity(),
+							UserActivity.class);
+					startActivity(intent);
+				}
 			}
 		});
 
@@ -82,10 +90,15 @@ public class TradeModeFragment extends NodeFragment {
 	}
 
 	private void goToSellModeActivity() {
-		Intent intent = new Intent(getActivity(), SellQRActivity.class);
-		startActivity(intent);
+		if (AppManager.DTM_STATE.equals("JAPAN")) {
+			Intent intent = new Intent(getActivity(), SellQRActivity.class);
+			startActivity(intent);
+		} else {
+			Intent intent = new Intent(getActivity(), UserActivity.class);
+			startActivity(intent);
+		}
 	}
-	
+
 	private void goToQRModeActivity() {
 		Intent intent = new Intent(getActivity(), RedeemQRActivity.class);
 		startActivity(intent);

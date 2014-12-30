@@ -138,6 +138,10 @@ public class UBASDKManager extends BaseManager {
 		if (mthread != null && !mthread.isInterrupted())
 			mthread.interrupt();
 	}
+	
+	public void getBoxThickness(){
+		
+	}
 
 	private boolean init() {
 		// String compath = "/dev/ttySAC1";

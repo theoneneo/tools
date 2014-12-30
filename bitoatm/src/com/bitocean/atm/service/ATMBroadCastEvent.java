@@ -29,6 +29,8 @@ public class ATMBroadCastEvent {
 	public final static int EVENT_QR_DECODE = BASE_EVENT + 20;
 	public final static int EVENT_QR_QUIT = BASE_EVENT + 21;
 	//======================
+	public final static int EVENT_REDEEM_CONFIRM_SUCCESS = BASE_EVENT + 22;	
+	public final static int EVENT_REDEEM_CONFIRM_FAIL = BASE_EVENT + 23;	
 	private int type;
 	private Object obj;
 	

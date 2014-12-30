@@ -10,6 +10,7 @@ import com.bitocean.atm.controller.AppManager;
 import com.bitocean.atm.struct.LoginAdminStruct;
 import com.bitocean.atm.struct.LoginUserStruct;
 import com.bitocean.atm.struct.RateStruct;
+import com.bitocean.atm.struct.RedeemConfirmStruct;
 import com.bitocean.atm.struct.VerifyCodeStruct;
 
 /**
@@ -105,5 +106,24 @@ public class ProtocolDataInput {
 
 		}
 		return;
+	}
+
+	public static RedeemConfirmStruct parseRedeemConfirmToJson(JSONObject obj)
+			throws JSONException {
+		if (obj == null) {
+			return null;
+		}
+		try {
+			RedeemConfirmStruct struct = new RedeemConfirmStruct();
+			struct.resutlString = obj.getString("result");
+			struct.resonString = obj.getString("reson");
+			struct.currency_type = obj.getString("currency_type");
+			struct.cash_num = obj.getDouble("cash_num");
+			return struct;
+		} catch (JSONException ex) {
+		} catch (Exception e) {
+
+		}
+		return null;
 	}
 }

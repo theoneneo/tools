@@ -42,6 +42,7 @@
 	<string name="trade_buy_pw_prompt">Print wallet buy</string>
 	<string name="trade_sell_qr_prompt">Sell QR</string>
 	<string name="trade_sell_pw_prompt">Sell print wallet</string>
+	<string name="trade_redeem_qr_prompt">Redeem QR</string>
 	<string name="scan_text">Please QR</string>	
 	
 	<string name="administrator">Administrator</string>

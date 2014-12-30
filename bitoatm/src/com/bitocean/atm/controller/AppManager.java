@@ -35,6 +35,7 @@ public class AppManager extends BaseManager {
 	public static String uuidString = null;
 	public static String DTM_CURRENCY = "RMB";
 	public static String DTM_STATE = "CHINA";
+	public static String DTM_OPERATORS = "BITOCEAN";
 	public static ArrayList<String> bitType = new ArrayList<String>();
 	public static TypeRateStruct typeRateStructs = new TypeRateStruct();
 	//[bitcocean "btce","okcoin","huobi","btcc","bitstamp","bitfinex"]:
@@ -93,6 +94,7 @@ public class AppManager extends BaseManager {
 		if(appInfo != null){
 			AppManager.DTM_CURRENCY = appInfo.metaData.getString("DTM_CURRENCY");
 			AppManager.DTM_STATE = appInfo.metaData.getString("DTM_STATE");
+			AppManager.DTM_OPERATORS = appInfo.metaData.getString("DTM_OPERATORS");
 		}
 		
 		if(pi != null){

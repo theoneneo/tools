@@ -10,6 +10,10 @@ import java.io.Serializable;
  *
  */
 public class LoginUserStruct implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6287966543127633662L;
 	public String resutlString;
 	public String resonString;
 	public String userTypeString;

@@ -24,7 +24,7 @@ public class KeyFragment extends NodeFragment {
 		Bundle b = getArguments();
 		if (b == null)
 			return;
-		struct = (LoginAdminStruct) b.getSerializable("struct");
+		struct = (LoginAdminStruct) b.getSerializable("loginadminstruct");
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -49,7 +49,7 @@ public class BuyCountFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				ConfirmFragment fragment = new ConfirmFragment();
+				BillConfirmFragment fragment = new BillConfirmFragment();
 				Bundle b = new Bundle();
 				b.putSerializable("bit_num", "");
 				b.putSerializable("currency_num", "");

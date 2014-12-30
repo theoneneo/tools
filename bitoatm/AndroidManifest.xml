@@ -55,8 +55,8 @@
         android:persistent="true" >
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask"
-            android:configChanges="locale">
+            android:configChanges="locale"
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -104,10 +104,11 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".LanguageActivity"      
+            android:name=".LanguageActivity"
             android:configChanges="locale"
             android:screenOrientation="landscape" >
-        </activity>        
+        </activity>
+
         <service
             android:name="com.bitocean.atm.service.ATMService"
             android:exported="false" />
@@ -120,13 +121,6 @@
                 <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
-
-        <meta-data
-            android:name="DTM_CURRENCY"
-            android:value="JPY" />
-        <meta-data
-            android:name="DTM_STATE"
-            android:value="JAPAN" />        
         <!-- umeng -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -146,6 +140,21 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <!-- umeng -->
+        <meta-data
+            android:name="DTM_UUID"
+            android:value="FASDFW3:DSFE:FFF" />        
+        <meta-data
+            android:name="DTM_CURRENCY"
+            android:value="JPY" />
+        <meta-data
+            android:name="DTM_STATE"
+            android:value="JAPAN" />
+        <meta-data
+            android:name="DTM_OPERATORS"
+            android:value="BITOCEAN" />
+        <meta-data
+            android:name="DTM_BOX_OUT_CASH"
+            android:value="1000" />        
     </application>
 
 </manifest>

@@ -10,6 +10,10 @@ import java.io.Serializable;
  *
  */
 public class RateStruct implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7674589133689704579L;
 	public String bit_type;//虚拟货币币类型
 	public String currency_type;//法币类型
 	public Double bit_rate;// 1比特币或火币与法币汇率  423.54 人民币

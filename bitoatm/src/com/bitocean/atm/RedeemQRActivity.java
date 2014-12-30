@@ -1,7 +1,6 @@
 package com.bitocean.atm;
 
 import com.bitocean.atm.fragment.RedeemQRFragment;
-import com.bitocean.atm.fragment.TradeModeFragment;
 
 import android.os.Bundle;
 

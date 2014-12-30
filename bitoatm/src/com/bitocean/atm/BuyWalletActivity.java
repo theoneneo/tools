@@ -1,8 +1,6 @@
 package com.bitocean.atm;
 
 import com.bitocean.atm.fragment.BuyCountFragment;
-import com.bitocean.atm.fragment.BuyQRFragment;
-import com.bitocean.atm.fragment.UserLoginFragment;
 
 import android.os.Bundle;
 /**

@@ -24,12 +24,12 @@ import de.greenrobot.event.EventBus;
  * @author bing.liu
  * 
  */
-public class ConfirmFragment extends NodeFragment {
+public class BillConfirmFragment extends NodeFragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_confirm, null);
+		View v = mInflater.inflate(R.layout.fragment_bill_confirm, null);
 		initView(v);
 		return v;
 	}

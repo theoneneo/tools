@@ -2,9 +2,11 @@ package com.bitocean.atm.fragment;
 
 import java.io.File;
 
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,9 +43,11 @@ public class RegisterPhoneFragment extends NodeFragment {
 		userIconString = (String) b.getSerializable("user_icon_url");
 		passportString = (String) b.getSerializable("passport_url");
 	}
-
+	
 	@Override
 	public void onDestroy() {
+		if(progressDialog != null)
+			progressDialog.dismiss();
 		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 	}
@@ -108,8 +112,8 @@ public class RegisterPhoneFragment extends NodeFragment {
 				getActivity()
 						.getSupportFragmentManager()
 						.popBackStack(
-								"registerphotofragment",
-								android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+								"userlogin",
+								FragmentManager.POP_BACK_STACK_INCLUSIVE);
 			}
 		});
 	}
@@ -177,7 +181,14 @@ public class RegisterPhoneFragment extends NodeFragment {
 			}
 			new Util(getActivity()).showFeatureToast(getActivity().getString(
 					R.string.register_success));
-			goToTradeModeActivity();
+			RegisterSuccessFragment fragment = new RegisterSuccessFragment();
+			getActivity()
+					.getSupportFragmentManager()
+					.beginTransaction()
+					.setTransition(
+							FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+					.add(R.id.container, fragment)
+					.addToBackStack("userlogin").commit();
 			break;
 		case ATMBroadCastEvent.EVENT_USER_REGISTER_FAIL:
 			if (progressDialog != null) {
@@ -211,11 +222,5 @@ public class RegisterPhoneFragment extends NodeFragment {
 		default:
 			break;
 		}
-	}
-
-	private void goToTradeModeActivity() {
-		Intent intent = new Intent(getActivity(), TradeModeActivity.class);
-		startActivity(intent);
-		getActivity().finish();
 	}
 }
