@@ -65,4 +65,13 @@ public class LanguageActivity extends BaseTimerActivity implements
 		this.startActivity(intent);
 		finish();
 	}
+	
+	@Override
+	public void onBackPressed(){
+		Intent intent = new Intent();
+		intent.setClass(this, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		this.startActivity(intent);
+		super.onBackPressed();
+	}
 }

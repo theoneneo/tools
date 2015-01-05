@@ -28,14 +28,14 @@ public class AppManager extends BaseManager {
 	public static boolean isLoopTime = true;
 	public static int loopTimer = LOOP_TIMER;
 	public static String public_keyString = null;
-	public static String exchangeString = "bitcocean";
 	public static String currency_typeString = "JPY";
 	public static int versionCode = 0;
 	public static String versionNameString = null;
-	public static String uuidString = null;
+	public static String DTM_UUID = null;
 	public static String DTM_CURRENCY = "RMB";
 	public static String DTM_STATE = "CHINA";
 	public static String DTM_OPERATORS = "BITOCEAN";
+	public static String DTM_BOX_OUT_CASH = "100";
 	public static ArrayList<String> bitType = new ArrayList<String>();
 	public static TypeRateStruct typeRateStructs = new TypeRateStruct();
 	//[bitcocean "btce","okcoin","huobi","btcc","bitstamp","bitfinex"]:
@@ -92,9 +92,11 @@ public class AppManager extends BaseManager {
 		}
 		
 		if(appInfo != null){
+			AppManager.DTM_UUID = appInfo.metaData.getString("DTM_UUID");
 			AppManager.DTM_CURRENCY = appInfo.metaData.getString("DTM_CURRENCY");
 			AppManager.DTM_STATE = appInfo.metaData.getString("DTM_STATE");
 			AppManager.DTM_OPERATORS = appInfo.metaData.getString("DTM_OPERATORS");
+			AppManager.DTM_BOX_OUT_CASH = appInfo.metaData.getString("DTM_BOX_OUT_CASH");
 		}
 		
 		if(pi != null){

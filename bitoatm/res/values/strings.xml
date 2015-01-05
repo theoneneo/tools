@@ -33,7 +33,7 @@
 	<string name="send_verify_success">send verify code success</string>
 	<string name="verify_error">Please set in verify code</string>
 	<string name="wait">Please wait a monent</string>
-	<string name="public_key">Public Key:</string>
+	<string name="public_key">Public Key</string>
 	<string name="key_prompt">Public Key</string>
 	
 	<string name="trade_mode">trade mode</string>
@@ -53,6 +53,7 @@
 	<string name="login">Login</string>
 	<string name="logout">Logout</string>
 	<string name="back">Back</string>
+	<string name="language">Language</string>
 	<string name="out">Out</string>
 	<string name="update">Update</string>
 

@@ -97,8 +97,14 @@ public class MainActivity extends BaseTimerActivity {
 			}
 		});
 
-		Button language_btn = (Button) findViewById(R.id.language_btn);
-		language_btn.setOnClickListener(new OnClickListener() {
+		Button leftButton = (Button) findViewById(R.id.bottom_button)
+				.findViewById(R.id.left_btn);
+		leftButton.setVisibility(View.INVISIBLE);
+
+		Button languageButton = (Button) findViewById(R.id.bottom_button)
+				.findViewById(R.id.right_btn);
+		languageButton.setText(R.string.language);
+		languageButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -118,6 +124,8 @@ public class MainActivity extends BaseTimerActivity {
 			clickNum++;
 			if (clickNum >= 7) {
 				timer.cancel();
+				isClick = false;
+				clickNum = 0;
 				goToSettingActivity();
 				return;
 			}

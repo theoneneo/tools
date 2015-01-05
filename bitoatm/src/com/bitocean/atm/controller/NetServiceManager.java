@@ -37,12 +37,12 @@ public class NetServiceManager extends BaseManager {
 	private static NetServiceManager mInstance;
 
 	private static final String NET_SERVER = "http://infocomm.duapp.com/";
-	private static final String NET_LOGIN_ADMIN = NET_SERVER + "";
-	private static final String NET_VERIFY_CODE = NET_SERVER + "";
-	private static final String NET_REGISTER_USER = NET_SERVER + "";
-	private static final String NET_LOGIN_USER = NET_SERVER + "";
-	private static final String NET_GET_RATE_LIST = NET_SERVER + "";
-	private static final String NET_REDEEM_CONFIRM = NET_SERVER + "";
+	private static final String NET_LOGIN_ADMIN = NET_SERVER + "loginadmin_bit.py";
+	private static final String NET_VERIFY_CODE = NET_SERVER + "verify_bit.py";
+	private static final String NET_REGISTER_USER = NET_SERVER + "register_bit.py";
+	private static final String NET_LOGIN_USER = NET_SERVER + "loginuser_bit.py";
+	private static final String NET_GET_RATE_LIST = NET_SERVER + "getrate_bit.py";
+	private static final String NET_REDEEM_CONFIRM = NET_SERVER + "redeemconfirm_bit.py";
 
 	private NetServiceManager(Application app) {
 		super(app);
@@ -107,10 +107,15 @@ public class NetServiceManager extends BaseManager {
 						@Override
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
+							String msg = null;
+							if(arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
 											ATMBroadCastEvent.EVENT_ADMIN_LOGIN_FAIL,
-											arg0.getMessage()));
+											msg));
 						}
 					}));
 		} catch (JSONException e) {
@@ -150,10 +155,15 @@ public class NetServiceManager extends BaseManager {
 						@Override
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
+							String msg = null;
+							if(arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
 											ATMBroadCastEvent.EVENT_VERIFY_CODE_FAIL,
-											arg0.getMessage()));
+											msg));
 						}
 					}));
 		} catch (JSONException e) {
@@ -200,10 +210,15 @@ public class NetServiceManager extends BaseManager {
 						@Override
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
+							String msg = null;
+							if(arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
 											ATMBroadCastEvent.EVENT_USER_LOGIN_FAIL,
-											arg0.getMessage()));
+											msg));
 						}
 					}));
 		} catch (JSONException e) {
@@ -243,10 +258,15 @@ public class NetServiceManager extends BaseManager {
 						@Override
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
+							String msg = null;
+							if(arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
 											ATMBroadCastEvent.EVENT_GET_RATE_LIST_FAIL,
-											arg0.getMessage()));
+											msg));
 						}
 					}));
 		} catch (JSONException e) {
@@ -286,10 +306,15 @@ public class NetServiceManager extends BaseManager {
 						@Override
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
+							String msg = null;
+							if(arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
 											ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_FAIL,
-											arg0.getMessage()));
+											msg));
 						}
 					}));
 		} catch (JSONException e) {
@@ -357,7 +382,7 @@ public class NetServiceManager extends BaseManager {
 			postBody.put("register_id", user_id);
 			postBody.put("register_password", user_password);
 			postBody.put("verify_code", verifyCode);
-			postBody.put("uuid", AppManager.uuidString);
+			postBody.put("uuid", AppManager.DTM_UUID);
 			try {
 				File userIcon = new File(userIconString);
 				byte[] byteUserIconData = Files.toByteArray(userIcon);

@@ -2,19 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+    android:background="@color/gray" >
 
     <include
         android:id="@+id/title_image"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/height_logo_layout"
         android:layout_alignParentTop="true"
         layout="@layout/view_title_image" />
 
     <include
         android:id="@+id/title_text"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/title_image"
         layout="@layout/view_title_text" />
 
@@ -23,29 +23,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_text"
-        android:layout_marginTop="50dp" >
+        android:layout_marginTop="70px" >
 
         <TextView
             android:id="@+id/wifi_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="200px"
+            android:layout_toRightOf="@+id/wifi_btn"
             android:text="@string/wifi_default"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_large_size" />
 
         <Button
             android:id="@+id/wifi_btn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_width="232px"
+            android:layout_height="70px"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="200dp"
+            android:layout_marginLeft="273px"
+            android:padding="0dp"
             android:text="@string/wifi_set_btn"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_large_size" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal_size" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -53,41 +54,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wifi_layout"
-        android:layout_marginTop="50dp" >
+        android:layout_marginTop="20px" >
 
         <TextView
             android:id="@+id/date_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="200dp"
-            android:textColor="@color/black"
+            android:layout_marginLeft="200px"
+            android:layout_toRightOf="@+id/date_btn"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_large_size" />
 
         <Button
             android:id="@+id/date_btn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_width="232px"
+            android:layout_height="70px"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="200dp"
+            android:layout_marginLeft="273px"
+            android:padding="0dp"
             android:text="@string/date_set_btn"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_large_size" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal_size" />
     </RelativeLayout>
 
     <include
         android:id="@+id/bottom_button"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/height_bottom_button_layout"
         android:layout_above="@+id/bottom_text"
         layout="@layout/view_bottom_button" />
 
     <include
         android:id="@+id/bottom_text"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/height_bottom_text_layout"
         android:layout_alignParentBottom="true"
         layout="@layout/view_bottom_text" />
 

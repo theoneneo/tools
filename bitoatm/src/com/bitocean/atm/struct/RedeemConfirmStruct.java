@@ -17,5 +17,5 @@ public class RedeemConfirmStruct implements Serializable{
 	public String resutlString;
 	public String resonString;
 	public String currency_type;
-	public double cash_num;
+	public double currency_num;
 }
