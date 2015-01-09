@@ -18,7 +18,7 @@ public class SellBitcoinMessageStruct implements Serializable{
 	 * 
 	 */
 	public String resutlString;
-	public String resonString;
+	public int reason;
 	public String user_public_key;
 	public String user_id;
 	public String currency_codeString;

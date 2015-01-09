@@ -224,7 +224,7 @@ public class UBASDKManager extends BaseManager {
 					super.sleep(100);
 					if (readbuffer[2] == escrow) {
 						int tempmoneycount = moneycount;
-						if (AppManager.getInstance().DTM_CURRENCY.equals("JPY")) {
+						if (AppManager.DTM_CURRENCY.equals("JPY")) {
 							if (readbuffer[3] == 0x64)
 								tempmoneycount += 1000;
 							if (readbuffer[3] == 0x65)
@@ -233,7 +233,7 @@ public class UBASDKManager extends BaseManager {
 								tempmoneycount += 5000;
 							if (readbuffer[3] == 0x67)
 								tempmoneycount += 10000;
-						} else if (AppManager.getInstance().DTM_CURRENCY
+						} else if (AppManager.DTM_CURRENCY
 								.equals("AUD")) {
 							if (readbuffer[3] == 0x61)
 								tempmoneycount += 1;
@@ -247,7 +247,7 @@ public class UBASDKManager extends BaseManager {
 								tempmoneycount += 50;
 							if (readbuffer[3] == 0x67)
 								tempmoneycount += 100;
-						} else if(AppManager.getInstance().DTM_CURRENCY.equals("RMB")){
+						} else if(AppManager.DTM_CURRENCY.equals("RMB")){
 							if (readbuffer[3] == 0x61)
 								tempmoneycount += 1;
 							if (readbuffer[3] == 0x63)

@@ -27,7 +27,7 @@
         android:orientation="vertical" >
 
         <ImageButton
-            android:id="@+id/buy_mode"
+            android:id="@+id/buy_mode_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/trade_buy_mode"
+            android:text="@string/buy_prompt"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large_size" />
     </LinearLayout>
@@ -49,7 +49,7 @@
         android:orientation="vertical" >
 
         <ImageButton
-            android:id="@+id/sell_mode"
+            android:id="@+id/sell_mode_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/trade_sell_qr_prompt"
+            android:text="@string/sell_prompt"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large_size" />
     </LinearLayout>
@@ -73,7 +73,7 @@
         android:orientation="vertical" >
 
         <ImageButton
-            android:id="@+id/qr_mode"
+            android:id="@+id/redeem_mode_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/trade_sell_pw_prompt"
+            android:text="@string/sell_prompt"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large_size" />
     </LinearLayout>

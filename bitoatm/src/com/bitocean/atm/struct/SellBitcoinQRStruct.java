@@ -17,7 +17,7 @@ public class SellBitcoinQRStruct implements Serializable{
 	 * 
 	 */
 	public String resutlString;
-	public String resonString;
+	public int reason;
 	public String user_public_key;
 	public String bitcoin_qr;
 	public double quota_num;

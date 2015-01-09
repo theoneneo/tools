@@ -2,6 +2,8 @@ package com.bitocean.atm.fragment;
 
 import java.io.File;
 
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -23,6 +25,7 @@ import com.bitocean.atm.QrCaptureActivity;
 import com.bitocean.atm.R;
 import com.bitocean.atm.controller.AppManager;
 import com.bitocean.atm.controller.NetServiceManager;
+import com.bitocean.atm.protocol.ProtocolDataInput;
 import com.bitocean.atm.service.ATMBroadCastEvent;
 import com.bitocean.atm.struct.LoginAdminStruct;
 import com.bitocean.atm.struct.RedeemConfirmStruct;
@@ -34,9 +37,10 @@ import de.greenrobot.event.EventBus;
  * @author bing.liu
  * 
  */
-public class RedeemQRFragment extends NodeFragment {
+public class RedeemScanQRFragment extends NodeFragment {
 	private ProgressDialog progressDialog = null;
 	private ImageView qr_image;
+	private TextView key_text;
 	private String redeemInfoString = null;
 
 	@Override
@@ -64,7 +68,7 @@ public class RedeemQRFragment extends NodeFragment {
 	private void initView(View v) {
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
-		titleTextView.setText(R.string.trade_redeem_qr_prompt);
+		titleTextView.setText(R.string.redeem_prompt);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
@@ -86,9 +90,11 @@ public class RedeemQRFragment extends NodeFragment {
 				goToQrCaptureActivity();
 			}
 		});
+		
+		key_text = (TextView)v.findViewById(R.id.key_text);	
 
-		Button qr_btnButton = (Button) v.findViewById(R.id.qr_btn);
-		qr_btnButton.setOnClickListener(new OnClickListener() {
+		Button qrButton = (Button) v.findViewById(R.id.qr_btn);
+		qrButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -123,11 +129,17 @@ public class RedeemQRFragment extends NodeFragment {
 				// 显示
 				qr_image.setImageBitmap((Bitmap) data
 						.getParcelableExtra("bitmap"));
+				key_text.setText(redeemInfoString);
 			}
 		}
 	}
 
 	private void redeemConfirm(String redeemString) {
+		if(redeemString == null){
+			new Util(getActivity()).showFeatureToast(getString(R.string.check_redeem_code));
+			return;
+		}
+		
 		NetServiceManager.getInstance().redeemConfirm(redeemString);
 		progressDialog = new Util(getActivity()).showProgressBar(getActivity()
 				.getString(R.string.wait));
@@ -143,33 +155,43 @@ public class RedeemQRFragment extends NodeFragment {
 			RedeemConfirmStruct struct = (RedeemConfirmStruct) event
 					.getObject();
 			if ("success".equals(struct.resutlString)) {
-				if (AppManager.currency_typeString.equals(struct.currency_type)) {
-					RedeemSuccessFragment fragment = new RedeemSuccessFragment();
-					Bundle b = new Bundle();
-					b.putSerializable("redeemconfirmstruct", struct);
-					fragment.setArguments(b);
-					getActivity()
-							.getSupportFragmentManager()
-							.beginTransaction()
-							.setTransition(
-									FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-							.add(R.id.container, fragment)
-							.addToBackStack("redeemconfirmfragment").commit();
-				} else {
-					RedeemFailFragment fragment = new RedeemFailFragment();
-					Bundle b = new Bundle();
-					b.putSerializable("redeemconfirmstruct", struct);
-					fragment.setArguments(b);
-					getActivity()
-							.getSupportFragmentManager()
-							.beginTransaction()
-							.setTransition(
-									FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-							.add(R.id.container, fragment)
-							.addToBackStack("redeemconfirmfragment").commit();
-				}
+				RedeemSuccessFragment fragment = new RedeemSuccessFragment();
+				Bundle b = new Bundle();
+				b.putSerializable("redeemconfirmstruct", struct);
+				fragment.setArguments(b);
+				getActivity()
+						.getSupportFragmentManager()
+						.beginTransaction()
+						.setTransition(
+								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+						.add(R.id.container, fragment)
+						.addToBackStack("redeemconfirmfragment").commit();
 			} else if ("fail".equals(struct.resutlString)) {
-				new Util(getActivity()).showFeatureToast(struct.resonString);
+				String msgString = null;
+				switch (struct.reason) {
+				case 1:
+					msgString = getString(R.string.redeem_fail_1);
+					break;
+				case 2:
+					msgString = getString(R.string.redeem_fail_2);
+					break;
+				case 3:
+					msgString = getString(R.string.redeem_fail_3);
+					break;
+				default:
+					break;
+				}
+				ConfirmFragment fragment = new ConfirmFragment();
+				Bundle b = new Bundle();
+				b.putString("reason", msgString);
+				fragment.setArguments(b);
+				getActivity()
+						.getSupportFragmentManager()
+						.beginTransaction()
+						.setTransition(
+								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+						.add(R.id.container, fragment)
+						.addToBackStack("redeemconfirmfragment").commit();
 			}
 			break;
 		case ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_FAIL:

@@ -30,7 +30,7 @@ public class BuyBillFragment extends NodeFragment {
 	private void initView(View v) {
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
-		titleTextView.setText(R.string.trade_buy_mode);
+		titleTextView.setText(R.string.buy_prompt);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);

@@ -55,7 +55,7 @@
         android:persistent="true" >
         <activity
             android:name=".MainActivity"
-            android:configChanges="locale"
+            android:screenOrientation="landscape"
             android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -89,7 +89,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".SellQRActivity"
+            android:name=".SellActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape" >
         </activity>
@@ -100,12 +100,12 @@
         </activity>
         <activity
             android:name=".QrCaptureActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="landscape" >
+            android:launchMode="standard">
         </activity>
         <activity
             android:name=".LanguageActivity"
             android:configChanges="locale"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape" >
         </activity>
 

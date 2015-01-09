@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
-import com.bitocean.atm.struct.RedeemConfirmStruct;
 /**
  * @author bing.liu
  * 
  */
-public class RedeemSuccessFragment extends NodeFragment {
-	private RedeemConfirmStruct struct;
+public class ConfirmFragment extends NodeFragment {
+	private String reasonString = null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,7 +22,7 @@ public class RedeemSuccessFragment extends NodeFragment {
 		Bundle b = getArguments();
 		if (b == null)
 			return;
-		struct = (RedeemConfirmStruct)b.getSerializable("redeemconfirmstruct");
+		reasonString = b.getString("reason");
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +39,7 @@ public class RedeemSuccessFragment extends NodeFragment {
 		titleTextView.setText(R.string.confirm);
 		
 		TextView textView = (TextView) v.findViewById(R.id.text);
-//		textView.setText(reasonString);
+		textView.setText(reasonString);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
@@ -58,10 +57,5 @@ public class RedeemSuccessFragment extends NodeFragment {
 				getActivity().finish();
 			}
 		});
-		out_cash();
-	}
-	
-	private void out_cash(){
-		//TODO 出钞，发送出钞通知，用户
 	}
 }

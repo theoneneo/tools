@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bitocean.atm.R;
 import com.bitocean.atm.TradeModeActivity;
+import com.bitocean.atm.controller.AppManager;
 import com.bitocean.atm.controller.NetServiceManager;
 import com.bitocean.atm.service.ATMBroadCastEvent;
 import com.bitocean.atm.struct.LoginUserStruct;
@@ -24,14 +25,15 @@ import com.bitocean.atm.struct.VerifyCodeStruct;
 import com.bitocean.atm.util.Util;
 
 import de.greenrobot.event.EventBus;
+
 /**
  * @author bing.liu
  * 
  */
 public class RegisterPhoneFragment extends NodeFragment {
 	private ProgressDialog progressDialog = null;
-	private String userIconString;
-	private String passportString;
+	private String userIconString = null;
+	private String passportString = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,10 @@ public class RegisterPhoneFragment extends NodeFragment {
 		userIconString = (String) b.getSerializable("user_icon_url");
 		passportString = (String) b.getSerializable("passport_url");
 	}
-	
+
 	@Override
 	public void onDestroy() {
-		if(progressDialog != null)
+		if (progressDialog != null)
 			progressDialog.dismiss();
 		EventBus.getDefault().unregister(this);
 		super.onDestroy();
@@ -109,11 +111,8 @@ public class RegisterPhoneFragment extends NodeFragment {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				deleteUserIconPassport();
-				getActivity()
-						.getSupportFragmentManager()
-						.popBackStack(
-								"userlogin",
-								FragmentManager.POP_BACK_STACK_INCLUSIVE);
+				getActivity().getSupportFragmentManager().popBackStack(
+						"userlogin", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 			}
 		});
 	}
@@ -126,10 +125,14 @@ public class RegisterPhoneFragment extends NodeFragment {
 	class deletePicture implements Runnable {
 		@Override
 		public void run() {
-			File userIcon = new File(userIconString);
-			userIcon.delete();
-			File passport = new File(passportString);
-			passport.delete();
+			if(userIconString != null){
+				File userIcon = new File(userIconString);
+				userIcon.delete();
+			}
+			if(passportString != null){
+				File passport = new File(passportString);
+				passport.delete();
+			}
 		}
 	}
 
@@ -149,7 +152,13 @@ public class RegisterPhoneFragment extends NodeFragment {
 
 		if (verifyCode == null || verifyCode.equals("")) {
 			new Util(getActivity()).showFeatureToast(getActivity().getString(
-					R.string.verify_error));
+					R.string.verify_set));
+			return;
+		}
+		
+		if(!AppManager.isNetEnable){
+			new Util(mContext).showFeatureToast(mContext
+					.getString(R.string.network_error));
 			return;
 		}
 
@@ -163,6 +172,12 @@ public class RegisterPhoneFragment extends NodeFragment {
 		if (user_id == null || user_id.equals("")) {
 			new Util(getActivity()).showFeatureToast(getActivity().getString(
 					R.string.admin_name_error));
+			return;
+		}
+		
+		if(!AppManager.isNetEnable){
+			new Util(mContext).showFeatureToast(mContext
+					.getString(R.string.network_error));
 			return;
 		}
 
@@ -179,24 +194,32 @@ public class RegisterPhoneFragment extends NodeFragment {
 				progressDialog.dismiss();
 				progressDialog = null;
 			}
-			new Util(getActivity()).showFeatureToast(getActivity().getString(
-					R.string.register_success));
-			RegisterSuccessFragment fragment = new RegisterSuccessFragment();
-			getActivity()
-					.getSupportFragmentManager()
-					.beginTransaction()
-					.setTransition(
-							FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+
+			ConfirmFragment fragment = new ConfirmFragment();
+			Bundle b = new Bundle();
+			b.putString("reason", getString(R.string.register_success));
+			fragment.setArguments(b);
+			getActivity().getSupportFragmentManager().beginTransaction()
+					.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 					.add(R.id.container, fragment)
-					.addToBackStack("userlogin").commit();
+					.addToBackStack("registerphonefragment").commit();
 			break;
 		case ATMBroadCastEvent.EVENT_USER_REGISTER_FAIL:
 			if (progressDialog != null) {
 				progressDialog.dismiss();
 				progressDialog = null;
 			}
-			new Util(getActivity())
-					.showFeatureToast((String) event.getObject());
+
+			String msgString = (String) event.getObject();
+			if ("1".equals(msgString)) {
+				msgString = getString(R.string.register_fail_1);
+			} else if ("2".equals(msgString)) {
+				msgString = getString(R.string.register_fail_1);
+			} else if ("3".equals(msgString)) {
+				msgString = getString(R.string.register_fail_1);
+			}
+
+			new Util(getActivity()).showFeatureToast(msgString);
 			break;
 		case ATMBroadCastEvent.EVENT_VERIFY_CODE_SUCCESS:
 			if (progressDialog != null) {
@@ -208,7 +231,8 @@ public class RegisterPhoneFragment extends NodeFragment {
 				new Util(getActivity()).showFeatureToast(getActivity()
 						.getString(R.string.send_verify_success));
 			} else if ("fail".equals(struct.resutlString)) {
-				new Util(getActivity()).showFeatureToast(struct.resonString);
+				new Util(getActivity())
+						.showFeatureToast(getString(R.string.verify_error));
 			}
 			break;
 		case ATMBroadCastEvent.EVENT_VERIFY_CODE_FAIL:

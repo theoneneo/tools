@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/trade_buy_qr_prompt"
+            android:text="@string/buy_qr_prompt"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large_size" />
     </LinearLayout>
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/trade_buy_pw_prompt"
+            android:text="@string/buy_pw_prompt"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large_size" />
     </LinearLayout>

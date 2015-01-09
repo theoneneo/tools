@@ -9,14 +9,19 @@ public class ATMBroadCastEvent {
 	public final static int EVENT_GOHOME = BASE_EVENT + 1;
 	public final static int EVENT_UPDATE_TIMER = BASE_EVENT + 2;
 	public final static int EVENT_NETWORK_STATUS = BASE_EVENT + 3;
+	//管理员登录===============
 	public final static int EVENT_ADMIN_LOGIN_SUCCESS = BASE_EVENT + 4;
 	public final static int EVENT_ADMIN_LOGIN_FAIL = BASE_EVENT + 5;
+	//用户登录===============
 	public final static int EVENT_USER_LOGIN_SUCCESS = BASE_EVENT + 6;
 	public final static int EVENT_USER_LOGIN_FAIL = BASE_EVENT + 7;
+	//用户注册===============
 	public final static int EVENT_USER_REGISTER_SUCCESS = BASE_EVENT + 8;
 	public final static int EVENT_USER_REGISTER_FAIL = BASE_EVENT + 9;
+	//获取验证码===============
 	public final static int EVENT_VERIFY_CODE_SUCCESS = BASE_EVENT + 10;
 	public final static int EVENT_VERIFY_CODE_FAIL = BASE_EVENT + 11;	
+	//获取汇率===============
 	public final static int EVENT_GET_RATE_LIST_SUCCESS = BASE_EVENT + 12;
 	public final static int EVENT_GET_RATE_LIST_FAIL = BASE_EVENT + 13;	
 	//摄像头扫描===============
@@ -28,9 +33,16 @@ public class ATMBroadCastEvent {
 	public final static int EVENT_QR_LAUNCH_PRODUCT_QUERY = BASE_EVENT + 19;
 	public final static int EVENT_QR_DECODE = BASE_EVENT + 20;
 	public final static int EVENT_QR_QUIT = BASE_EVENT + 21;
-	//======================
+	//赎回======================
 	public final static int EVENT_REDEEM_CONFIRM_SUCCESS = BASE_EVENT + 22;	
-	public final static int EVENT_REDEEM_CONFIRM_FAIL = BASE_EVENT + 23;	
+	public final static int EVENT_REDEEM_CONFIRM_FAIL = BASE_EVENT + 23;
+	//用户kyc注册======================
+	public final static int EVENT_USER_REGISTER_KYC_SUCCESS = BASE_EVENT + 24;
+	public final static int EVENT_USER_REGISTER_KYC_FAIL = BASE_EVENT + 25;
+	//用户kyc注册======================
+	public final static int EVENT_GET_SELL_QR_CODE_SUCCESS = BASE_EVENT + 26;
+	public final static int EVENT_GET_SELL_QR_CODE_FAIL = BASE_EVENT + 27;
+	
 	private int type;
 	private Object obj;
 	

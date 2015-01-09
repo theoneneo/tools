@@ -29,6 +29,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import de.greenrobot.event.EventBus;
+
 /**
  * @author bing.liu
  * 
@@ -37,12 +38,20 @@ public class NetServiceManager extends BaseManager {
 	private static NetServiceManager mInstance;
 
 	private static final String NET_SERVER = "http://infocomm.duapp.com/";
-	private static final String NET_LOGIN_ADMIN = NET_SERVER + "loginadmin_bit.py";
+	private static final String NET_LOGIN_ADMIN = NET_SERVER
+			+ "loginadmin_bit.py";
 	private static final String NET_VERIFY_CODE = NET_SERVER + "verify_bit.py";
-	private static final String NET_REGISTER_USER = NET_SERVER + "register_bit.py";
-	private static final String NET_LOGIN_USER = NET_SERVER + "loginuser_bit.py";
-	private static final String NET_GET_RATE_LIST = NET_SERVER + "getrate_bit.py";
-	private static final String NET_REDEEM_CONFIRM = NET_SERVER + "redeemconfirm_bit.py";
+	private static final String NET_REGISTER_USER = NET_SERVER
+			+ "register_bit.py";
+	private static final String NET_REGISTER_KYC = NET_SERVER + "kyc_bit.py";
+	private static final String NET_LOGIN_USER = NET_SERVER
+			+ "loginuser_bit.py";
+	private static final String NET_GET_RATE_LIST = NET_SERVER
+			+ "getrate_bit.py";
+	private static final String NET_REDEEM_CONFIRM = NET_SERVER
+			+ "redeemconfirm_bit.py";
+	private static final String NET_SELL_QR_CODE = NET_SERVER + "sellqr_bit.py";
+	private static final String NET_SELL_BITCOIN = NET_SERVER + "sell_bit.py";
 
 	private NetServiceManager(Application app) {
 		super(app);
@@ -76,6 +85,7 @@ public class NetServiceManager extends BaseManager {
 
 	}
 
+	// 管理员登录
 	public void loginAdmin(String admin_id, String admin_password) {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
@@ -108,7 +118,7 @@ public class NetServiceManager extends BaseManager {
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
 							String msg = null;
-							if(arg0.getMessage() != null)
+							if (arg0.getMessage() != null)
 								msg = arg0.getMessage();
 							else
 								msg = arg0.getLocalizedMessage();
@@ -125,6 +135,7 @@ public class NetServiceManager extends BaseManager {
 		mQueue.start();
 	}
 
+	// 获取注册验证码
 	public void verifyCode(String user_id) {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
@@ -156,7 +167,7 @@ public class NetServiceManager extends BaseManager {
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
 							String msg = null;
-							if(arg0.getMessage() != null)
+							if (arg0.getMessage() != null)
 								msg = arg0.getMessage();
 							else
 								msg = arg0.getLocalizedMessage();
@@ -173,12 +184,21 @@ public class NetServiceManager extends BaseManager {
 		mQueue.start();
 	}
 
+	// 用户注册
 	public void registerUser(String user_id, String user_password,
 			String verifyCode, String userIconString, String passportString) {
 		new Thread(new RegisterThread(user_id, user_password, verifyCode,
 				userIconString, passportString)).start();
 	}
 
+	// 注册kyc
+	public void registerUserKyc(String user_id, String userIconString,
+			String passportString) {
+		new Thread(new RegisterThread(user_id, null, null, userIconString,
+				passportString)).start();
+	}
+
+	// 用户登录
 	public void loginUser(String user_id, String user_password) {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
@@ -211,7 +231,7 @@ public class NetServiceManager extends BaseManager {
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
 							String msg = null;
-							if(arg0.getMessage() != null)
+							if (arg0.getMessage() != null)
 								msg = arg0.getMessage();
 							else
 								msg = arg0.getLocalizedMessage();
@@ -228,6 +248,7 @@ public class NetServiceManager extends BaseManager {
 		mQueue.start();
 	}
 
+	// 获取汇率
 	public void getRateList(ArrayList<String> bitType) {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
@@ -259,7 +280,7 @@ public class NetServiceManager extends BaseManager {
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
 							String msg = null;
-							if(arg0.getMessage() != null)
+							if (arg0.getMessage() != null)
 								msg = arg0.getMessage();
 							else
 								msg = arg0.getLocalizedMessage();
@@ -275,8 +296,9 @@ public class NetServiceManager extends BaseManager {
 		}
 		mQueue.start();
 	}
-	
-	public void redeemConfirm(String redeemString){
+
+	// 赎回
+	public void redeemConfirm(String redeemString) {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
 		try {
@@ -288,11 +310,12 @@ public class NetServiceManager extends BaseManager {
 						public void onResponse(Object arg0) {
 							// TODO Auto-generated method stub
 							try {
-								ProtocolDataInput
-										.parseRedeemConfirmToJson((JSONObject) arg0);
+
 								EventBus.getDefault()
 										.post(new ATMBroadCastEvent(
-												ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_SUCCESS));
+												ATMBroadCastEvent.EVENT_REDEEM_CONFIRM_SUCCESS,
+												ProtocolDataInput
+														.parseRedeemConfirmToJson((JSONObject) arg0)));
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -307,7 +330,7 @@ public class NetServiceManager extends BaseManager {
 						public void onErrorResponse(VolleyError arg0) {
 							// TODO Auto-generated method stub
 							String msg = null;
-							if(arg0.getMessage() != null)
+							if (arg0.getMessage() != null)
 								msg = arg0.getMessage();
 							else
 								msg = arg0.getLocalizedMessage();
@@ -325,11 +348,11 @@ public class NetServiceManager extends BaseManager {
 	}
 
 	class RegisterThread implements Runnable {
-		final private String user_id;
-		final private String user_password;
-		final private String verifyCode;
-		final private String userIconString;
-		final private String passportString;
+		public String user_id = null;
+		public String user_password = null;
+		public String verifyCode = null;
+		public String userIconString = null;
+		public String passportString = null;
 
 		public RegisterThread(String user_id, String user_password,
 				String verifyCode, String userIconString, String passportString) {
@@ -350,15 +373,29 @@ public class NetServiceManager extends BaseManager {
 					byte[] response) {
 				String responseStr = new String(response);
 				if (responseStr.equals("OK")) {
-					EventBus.getDefault()
-							.post(new ATMBroadCastEvent(
-									ATMBroadCastEvent.EVENT_USER_REGISTER_SUCCESS,
-									new String(response)));
+					if (user_password != null) {
+						EventBus.getDefault()
+								.post(new ATMBroadCastEvent(
+										ATMBroadCastEvent.EVENT_USER_REGISTER_SUCCESS,
+										responseStr));
+					} else {
+						EventBus.getDefault()
+								.post(new ATMBroadCastEvent(
+										ATMBroadCastEvent.EVENT_USER_REGISTER_KYC_SUCCESS,
+										responseStr));
+					}
 				} else {
-					EventBus.getDefault().post(
-							new ATMBroadCastEvent(
-									ATMBroadCastEvent.EVENT_USER_REGISTER_FAIL,
-									new String(response)));
+					if (user_password != null) {
+						EventBus.getDefault()
+								.post(new ATMBroadCastEvent(
+										ATMBroadCastEvent.EVENT_USER_REGISTER_FAIL,
+										responseStr));
+					} else {
+						EventBus.getDefault()
+								.post(new ATMBroadCastEvent(
+										ATMBroadCastEvent.EVENT_USER_REGISTER_KYC_FAIL,
+										responseStr));
+					}
 				}
 			}
 
@@ -380,21 +417,28 @@ public class NetServiceManager extends BaseManager {
 			AsyncHttpClient client = new AsyncHttpClient();
 			RequestParams postBody = new RequestParams();
 			postBody.put("register_id", user_id);
-			postBody.put("register_password", user_password);
-			postBody.put("verify_code", verifyCode);
-			postBody.put("uuid", AppManager.DTM_UUID);
+			if (user_password != null)
+				postBody.put("register_password", user_password);
+			if (verifyCode != null)
+				postBody.put("verify_code", verifyCode);
+			postBody.put("dtm_uuid", AppManager.DTM_UUID);
 			try {
-				File userIcon = new File(userIconString);
-				byte[] byteUserIconData = Files.toByteArray(userIcon);
-				ByteArrayInputStream bsUserIcon = new ByteArrayInputStream(
-						byteUserIconData);
-				postBody.put("user_icon", bsUserIcon, userIconString);
+				// 根据是否有userIconString 判断是否kyc注册
+				if (userIconString != null) {
+					File userIcon = new File(userIconString);
+					byte[] byteUserIconData = Files.toByteArray(userIcon);
+					ByteArrayInputStream bsUserIcon = new ByteArrayInputStream(
+							byteUserIconData);
+					postBody.put("user_icon", bsUserIcon, userIconString);
+				}
 
-				File passport = new File(passportString);
-				byte[] bytepassportData = Files.toByteArray(passport);
-				ByteArrayInputStream bspassport = new ByteArrayInputStream(
-						bytepassportData);
-				postBody.put("passport", bspassport, passportString);
+				if (passportString != null) {
+					File passport = new File(passportString);
+					byte[] bytepassportData = Files.toByteArray(passport);
+					ByteArrayInputStream bspassport = new ByteArrayInputStream(
+							bytepassportData);
+					postBody.put("passport", bspassport, passportString);
+				}
 
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -403,7 +447,114 @@ public class NetServiceManager extends BaseManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			client.post(NET_REGISTER_USER, postBody, responseHandler);
+			if (user_password != null)
+				client.post(NET_REGISTER_USER, postBody, responseHandler);
+			else
+				client.post(NET_REGISTER_KYC, postBody, responseHandler);
 		}
+	}
+
+	// 获取卖币二维码
+	public void getSellQRCode(String user_public_key, String user_id,
+			int currency_num) {
+		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
+				.getContext());
+		try {
+			JSONObject obj = ProtocolDataOutput.getSellQRCode(user_public_key,
+					user_id, currency_num);
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_REDEEM_CONFIRM,
+					obj, new Listener() {
+
+						@Override
+						public void onResponse(Object arg0) {
+							// TODO Auto-generated method stub
+							try {
+
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_SUCCESS,
+												ProtocolDataInput
+														.parseSellQRCodeToJson((JSONObject) arg0)));
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL,
+												e.getMessage()));
+							}
+						}
+					}, new ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError arg0) {
+							// TODO Auto-generated method stub
+							String msg = null;
+							if (arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
+							EventBus.getDefault()
+									.post(new ATMBroadCastEvent(
+											ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL,
+											msg));
+						}
+					}));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mQueue.start();
+	}
+	
+	// 卖币
+	public void SellBitcoin(String user_public_key, String user_id,
+			int currency_num) {
+		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
+				.getContext());
+		try {
+			JSONObject obj = ProtocolDataOutput.getSellQRCode(user_public_key,
+					user_id, currency_num);
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_REDEEM_CONFIRM,
+					obj, new Listener() {
+
+						@Override
+						public void onResponse(Object arg0) {
+							// TODO Auto-generated method stub
+							try {
+
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_SUCCESS,
+												ProtocolDataInput
+														.parseSellQRCodeToJson((JSONObject) arg0)));
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL,
+												e.getMessage()));
+							}
+						}
+					}, new ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError arg0) {
+							// TODO Auto-generated method stub
+							String msg = null;
+							if (arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
+							EventBus.getDefault()
+									.post(new ATMBroadCastEvent(
+											ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL,
+											msg));
+						}
+					}));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mQueue.start();
 	}
 }

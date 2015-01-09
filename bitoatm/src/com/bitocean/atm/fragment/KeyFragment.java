@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
@@ -47,6 +48,11 @@ public class KeyFragment extends NodeFragment {
 		TextView updateTextView = (TextView) v.findViewById(R.id.update_info);
 		if (struct != null)
 			updateTextView.setText(struct.update_infoString);
+		
+		if(struct.update_linkString.equals("") || struct.update_linkString == null){
+			RelativeLayout update_layout = (RelativeLayout)v.findViewById(R.id.update_layout);
+			update_layout.setVisibility(View.INVISIBLE);
+		}
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
@@ -69,8 +75,14 @@ public class KeyFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				
+				downloadApk();
 			}
 		});
+	}
+	
+	private void downloadApk(){
+		if(struct.update_linkString.equals("") || struct.update_linkString == null)
+			return;
+		
 	}
 }

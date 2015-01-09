@@ -5,7 +5,7 @@
     android:layout_height="match_parent" >
     <fragment
         android:id="@+id/redeem_qr_fragment"
-        android:name="com.bitocean.atm.fragment.RedeemQRFragment"
+        android:name="com.bitocean.atm.fragment.RedeemScanQRFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

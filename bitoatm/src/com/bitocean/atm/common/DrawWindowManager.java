@@ -36,8 +36,10 @@ public class DrawWindowManager {
 
 	public void updateNetworkStatus(NetworkInfo info) {
 		if (info != null && info.isAvailable()) {
+			AppManager.isNetEnable = true;
 			showNetWorkStatus(info.isAvailable());
 		} else {
+			AppManager.isNetEnable = false;
 			if (info != null)
 				showNetWorkStatus(info.isAvailable());
 			new Util(mContext).showFeatureToast(mContext
@@ -67,11 +69,11 @@ public class DrawWindowManager {
 
 			wmParams.gravity = Gravity.RIGHT | Gravity.TOP;
 
-			wmParams.x = Util.dip2px(mContext, 5);
-			wmParams.y = Util.dip2px(mContext, 5);
+			wmParams.x = 100;//Util.dip2px(mContext, 5);
+			wmParams.y = 100;//Util.dip2px(mContext, 5);
 
-			wmParams.width = Util.dip2px(mContext, 10);
-			wmParams.height = Util.dip2px(mContext, 10);
+			wmParams.width = 80;//Util.dip2px(mContext, 30);
+			wmParams.height = 80;//Util.dip2px(mContext, 30);
 			mWManager.addView(wifiImageView, wmParams);
 		}
 	}

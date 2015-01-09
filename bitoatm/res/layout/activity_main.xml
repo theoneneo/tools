@@ -12,28 +12,6 @@
         layout="@layout/view_title_image"
         android:clickable="true" />
 
-    <include
-        android:id="@+id/buy_rate_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/logo"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
-        layout="@layout/view_rate_text" />
-
-    <include
-        android:id="@+id/sell_rate_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/buy_rate_text"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
-        layout="@layout/view_rate_text" />
-
     <RelativeLayout
         android:id="@+id/click_layout"
         android:layout_width="wrap_content"

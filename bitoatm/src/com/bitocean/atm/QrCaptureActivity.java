@@ -96,6 +96,7 @@ public class QrCaptureActivity extends BaseTimerActivity implements Callback {
 			resultIntent.putExtras(bundle);
 			setResult(RESULT_OK, resultIntent);
 		}
+		finish();
 	}
 	
 	private void initCamera(SurfaceHolder surfaceHolder) {

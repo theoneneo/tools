@@ -1,51 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-	    
+	<string name="welcome">welcome</string>
+	<string name="touch">Tap the screen to start</string>    
+	<string name="language">Language</string>	
 	<string name="buy">Buy</string>
 	<string name="sell">Sell</string>
-	<string name="unit_bit">BIT</string>
-	<string name="unit_money">RMB</string>
-	<string name="welcome">welcome bitocean atm</string>
-	<string name="touch">touch to click</string>
+	<string name="wait">Please wait a monent</string>
 	<string name="website">www.bitocean.com</string>
 	<string name="network_error">network is error, please check it!</string>
-	<string name="wifi_prompt">Please set wifi network and Date</string>
-	<string name="wifi_default">Please set wifi</string>
-	<string name="wifi_set_btn">Setting WIFI</string>
-	<string name="date_set_btn">Setting DATE</string>
-	
-	<string name="admin_prompt">Please administrator login</string>
-	<string name="admin_name">Administrator name:</string>
-	<string name="admin_password">Administrator password:</string>
-	
-	<string name="user_login_prompt">Please user login</string>
-	<string name="user_name">User name:</string>
-	<string name="user_password">User password:</string>
-	
-	<string name="register_photo_prompt">photo</string>
-	<string name="register_passport_prompt">passport</string>
-	<string name="register_phone_prompt">phone</string>
-	<string name="register_get_verify">Get Verify</string>
-	<string name="register_success">register success</string>
-		
-	<string name="admin_name_error">Please set in name</string>
-	<string name="admin_password_error">Please set in password</string>
-	<string name="send_verify_success">send verify code success</string>
-	<string name="verify_error">Please set in verify code</string>
-	<string name="wait">Please wait a monent</string>
-	<string name="public_key">Public Key</string>
-	<string name="key_prompt">Public Key</string>
-	
-	<string name="trade_mode">trade mode</string>
-	<string name="trade_buy_mode">buy bitcoin</string>
-	<string name="trade_buy_qr_prompt">QR buy</string>
-	<string name="trade_buy_pw_prompt">Print wallet buy</string>
-	<string name="trade_sell_qr_prompt">Sell QR</string>
-	<string name="trade_sell_pw_prompt">Sell print wallet</string>
-	<string name="trade_redeem_qr_prompt">Redeem QR</string>
 	<string name="scan_text">Please QR</string>	
-	
-	<string name="administrator">Administrator</string>
 	<string name="cancel">Cancel</string>
 	<string name="next">Next</string>
 	<string name="ok">OK</string>
@@ -53,8 +16,93 @@
 	<string name="login">Login</string>
 	<string name="logout">Logout</string>
 	<string name="back">Back</string>
-	<string name="language">Language</string>
 	<string name="out">Out</string>
-	<string name="update">Update</string>
+	<string name="confirm">Confirm</string>
+		
+	<string name="wifi_prompt">Welcome , please setup</string>
+	<string name="wifi_default">Please set wifi</string>
+	<string name="wifi_set_btn">Setting WIFI</string>
+	<string name="date_set_btn">Setting DATE</string>	
+		
+	<string name="administrator">Administrator</string>
+	<string name="admin_prompt">Please administrator login</string>
+	<string name="admin_name">Administrator name:</string>
+	<string name="admin_password">Administrator password:</string>
+	<string name="admin_name_error">Please set in name</string>
+	<string name="admin_password_error">Please set in password</string>	
+	<string name="admin_login_fail_1">The administrator does not exist</string>
+	<string name="admin_login_fail_2">The administrator password error</string>
+	<string name="admin_login_fail_3">The administrator of non binding machine</string>		
+	
+	<string name="key_prompt">Management</string>
+	<string name="public_key">Public Key:</string>
+	<string name="update">Update:</string>
+		
+	<string name="trade_mode">trade mode</string>
+	<string name="buy_prompt">buy bitcoin</string>
+	<string name="buy_qr_prompt">QR buy</string>
+	<string name="buy_pw_prompt">Print wallet buy</string>
+	<string name="sell_prompt">Sell QR</string>
+	
+	<string name="redeem_prompt">Redeem</string>	
+	<string name="check_redeem_code">Please scan redeem code</string>	
+	<string name="redeem_fail_1">The transaction does not exist</string>	
+	<string name="redeem_fail_2">The transaction has been completed</string>	
+	<string name="redeem_fail_3">You must redeem currency does not support machine</string>		
+		
+	<string name="user_login_prompt">Please user login</string>
+	<string name="user_name">User name:</string>
+	<string name="user_password">User password:</string>
+	<string name="user_login_fail_1">The user does not exist</string>	
+	<string name="user_login_fail_2">The user password error</string>	
+	<string name="user_login_fail_3">The user be locked</string>		
+		
+	<string name="register_photo_prompt">photo</string>
+	<string name="register_passport_prompt">passport</string>
+	<string name="register_phone_prompt">phone</string>
+	<string name="register_get_verify">Get Verify</string>
+	<string name="register_success">register success</string>	
+	<string name="register_passport_error">Please scan your passport</string>
+	<string name="register_photo_error">Please photo</string>
+	<string name="register_fail_1">The user does exist</string>	
+	<string name="register_fail_2">The user kyc fail</string>	
+	<string name="register_fail_3">The user register fail</string>		
+		
+	<string name="send_verify_success">send verify code success</string>
+	<string name="verify_set">Please set in verify code</string>
+	<string name="verify_error">get verify error</string>	
+	
+	<string name="sell_flow_display">Sell flow display</string>
+	<string name="sell_flow_display_1">Please scan your public key</string>
+	<string name="sell_flow_display_2">Please set currency</string>
+	<string name="sell_flow_display_3">Please scan sell QR code</string>
+	<string name="sell_flow_display_4">Get the cash!</string>
+	<string name="sell_qr_code_display_1">The public key is not legitimate</string>
+	<string name="sell_qr_code_display_2">Get the sell qr code fail</string>
+	<string name="sell_qr_code_flow_prompt">Please scan this QR code and transfer accounts the bitcoin </string>
+	<string name="sell_qr_code_large_prompt">This is a large sum transaction, receive a redemption code after 15 minutes of redemption</string>
+	
+	<string name="buy_qr_flow_display">Buy QR flow display</string>
+	<string name="buy_qr_flow_display_1">Please scan your public key</string>
+	<string name="buy_qr_flow_display_2">Please set currency</string>
+	<string name="buy_qr_flow_display_3">Please insert money</string>
+	<string name="buy_qr_flow_display_4">Wait broadcast!</string>
+	
+	<string name="buy_wallet_flow_display">Buy wallet flow display</string>
+	<string name="buy_wallet_flow_display_1">Please set currency</string>
+	<string name="buy_wallet_flow_display_2">Please insert money</string>
+	<string name="buy_wallet_flow_display_3">Wait print wallet</string>
+	
+	<string name="check_scan_user_public_key">Please scan your public key</string>
+	<string name="scan_user_key_prompt">Scan user public key</string>
+	
+	
+	
+	
+	
+	
+	
+
+
 
 </resources>

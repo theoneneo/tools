@@ -1,7 +1,10 @@
 package com.bitocean.atm;
 
-import com.bitocean.atm.fragment.RedeemQRFragment;
+import com.bitocean.atm.fragment.RedeemScanQRFragment;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 /**
@@ -9,7 +12,7 @@ import android.os.Bundle;
  * 
  */
 public class RedeemQRActivity extends BaseTimerActivity {
-	private RedeemQRFragment redeemQRFragment;
+	private RedeemScanQRFragment redeemQRFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +22,7 @@ public class RedeemQRActivity extends BaseTimerActivity {
 	}
 
 	private void initUI() {
-		redeemQRFragment = (RedeemQRFragment) getSupportFragmentManager()
+		redeemQRFragment = (RedeemScanQRFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.redeem_qr_fragment);
 	}
 }

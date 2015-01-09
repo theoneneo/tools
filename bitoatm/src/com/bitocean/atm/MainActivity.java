@@ -18,10 +18,10 @@ import android.widget.TextView;
  * 
  */
 public class MainActivity extends BaseTimerActivity {
-	private TextView buyActionText, buyBitValueText, buyBitUnitText,
-			buyMoneyValueText, buyMoneyUnitTextView, sellActionText,
-			sellBitValueText, sellBitUnitText, sellMoneyValueText,
-			sellMoneyUnitTextView;
+//	private TextView buyActionText, buyBitValueText, buyBitUnitText,
+//			buyMoneyValueText, buyMoneyUnitTextView, sellActionText,
+//			sellBitValueText, sellBitUnitText, sellMoneyValueText,
+//			sellMoneyUnitTextView;
 
 	private boolean isClick = false;
 	private int clickNum = 0;
@@ -45,46 +45,46 @@ public class MainActivity extends BaseTimerActivity {
 	}
 
 	private void initUI() {
-		buyActionText = (TextView) findViewById(R.id.buy_rate_text)
-				.findViewById(R.id.action_text);
-		buyBitValueText = (TextView) findViewById(R.id.buy_rate_text)
-				.findViewById(R.id.bit_value_text);
-		buyBitUnitText = (TextView) findViewById(R.id.buy_rate_text)
-				.findViewById(R.id.bit_unit_text);
-		buyMoneyValueText = (TextView) findViewById(R.id.buy_rate_text)
-				.findViewById(R.id.money_value_text);
-		buyMoneyUnitTextView = (TextView) findViewById(R.id.buy_rate_text)
-				.findViewById(R.id.money_unit_text);
-
-		sellActionText = (TextView) findViewById(R.id.sell_rate_text)
-				.findViewById(R.id.action_text);
-		sellBitValueText = (TextView) findViewById(R.id.sell_rate_text)
-				.findViewById(R.id.bit_value_text);
-		sellBitUnitText = (TextView) findViewById(R.id.sell_rate_text)
-				.findViewById(R.id.bit_unit_text);
-		sellMoneyValueText = (TextView) findViewById(R.id.sell_rate_text)
-				.findViewById(R.id.money_value_text);
-		sellMoneyUnitTextView = (TextView) findViewById(R.id.sell_rate_text)
-				.findViewById(R.id.money_unit_text);
-
-		buyActionText.setText(R.string.buy);
-		buyBitValueText.setText("1");
-		buyBitUnitText.setText(R.string.unit_bit);
-		buyMoneyValueText.setText("");
-		buyMoneyUnitTextView.setText(R.string.unit_money);
-
-		sellActionText.setText(R.string.sell);
-		sellBitValueText.setText("1");
-		sellBitUnitText.setText(R.string.unit_bit);
-		sellMoneyValueText.setText("");
-		sellMoneyUnitTextView.setText(R.string.unit_money);
+//		buyActionText = (TextView) findViewById(R.id.buy_rate_text)
+//				.findViewById(R.id.action_text);
+//		buyBitValueText = (TextView) findViewById(R.id.buy_rate_text)
+//				.findViewById(R.id.bit_value_text);
+//		buyBitUnitText = (TextView) findViewById(R.id.buy_rate_text)
+//				.findViewById(R.id.bit_unit_text);
+//		buyMoneyValueText = (TextView) findViewById(R.id.buy_rate_text)
+//				.findViewById(R.id.money_value_text);
+//		buyMoneyUnitTextView = (TextView) findViewById(R.id.buy_rate_text)
+//				.findViewById(R.id.money_unit_text);
+//
+//		sellActionText = (TextView) findViewById(R.id.sell_rate_text)
+//				.findViewById(R.id.action_text);
+//		sellBitValueText = (TextView) findViewById(R.id.sell_rate_text)
+//				.findViewById(R.id.bit_value_text);
+//		sellBitUnitText = (TextView) findViewById(R.id.sell_rate_text)
+//				.findViewById(R.id.bit_unit_text);
+//		sellMoneyValueText = (TextView) findViewById(R.id.sell_rate_text)
+//				.findViewById(R.id.money_value_text);
+//		sellMoneyUnitTextView = (TextView) findViewById(R.id.sell_rate_text)
+//				.findViewById(R.id.money_unit_text);
+//
+//		buyActionText.setText(R.string.buy);
+//		buyBitValueText.setText("1");
+//		buyBitUnitText.setText(R.string.unit_bit);
+//		buyMoneyValueText.setText("");
+//		buyMoneyUnitTextView.setText(R.string.unit_money);
+//
+//		sellActionText.setText(R.string.sell);
+//		sellBitValueText.setText("1");
+//		sellBitUnitText.setText(R.string.unit_bit);
+//		sellMoneyValueText.setText("");
+//		sellMoneyUnitTextView.setText(R.string.unit_money);
 
 		RelativeLayout clickLayout = (RelativeLayout) findViewById(R.id.click_layout);
 		clickLayout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				goToUserLoginActivity();
+				goToTradeModeActivity();
 			}
 		});
 
@@ -144,7 +144,7 @@ public class MainActivity extends BaseTimerActivity {
 		}
 	}
 
-	private void goToUserLoginActivity() {
+	private void goToTradeModeActivity() {
 		Intent intent = new Intent(this, TradeModeActivity.class);
 		startActivity(intent);
 	}

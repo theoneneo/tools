@@ -19,15 +19,27 @@ import android.widget.TextView;
 
 import com.bitocean.atm.CameraActivity;
 import com.bitocean.atm.R;
+import com.bitocean.atm.struct.LoginUserStruct;
 import com.bitocean.atm.util.Util;
 /**
  * @author bing.liu
  * 
  */
 public class RegisterPhotoFragment extends NodeFragment {
+	private LoginUserStruct struct;
 	private ImageView photoImageView;
 	private Bitmap bitmap = null;
 	private String filepath;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mContext = getActivity().getApplicationContext();
+		Bundle b = getArguments();
+		if (b == null)
+			return;
+		struct = (LoginUserStruct) b.getSerializable("loginuserstruct");
+	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -72,6 +84,8 @@ public class RegisterPhotoFragment extends NodeFragment {
 					RegisterPassportFragment fragment = new RegisterPassportFragment();
 					Bundle b = new Bundle();
 					b.putSerializable("user_icon_url", filepath);
+					if(struct != null)
+						b.putSerializable("loginuserstruct", struct);
 					fragment.setArguments(b);
 					getActivity()
 							.getSupportFragmentManager()

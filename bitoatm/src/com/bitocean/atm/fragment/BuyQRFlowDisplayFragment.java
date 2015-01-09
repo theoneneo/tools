@@ -1,7 +1,6 @@
 package com.bitocean.atm.fragment;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +9,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bitocean.atm.BuyQRActivity;
-import com.bitocean.atm.BuyWalletActivity;
 import com.bitocean.atm.R;
-import com.bitocean.atm.TradeModeActivity;
+import com.bitocean.atm.controller.ProcessEvent;
+
 /**
  * @author bing.liu
  * 
  */
-public class SellCountFragment extends NodeFragment {
+public class BuyQRFlowDisplayFragment extends NodeFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_sell_count, null);
+		View v = mInflater.inflate(R.layout.fragment_buy_qr_flow_display, null);
 		initView(v);
 		return v;
 	}
@@ -30,7 +28,7 @@ public class SellCountFragment extends NodeFragment {
 	private void initView(View v) {
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
-		titleTextView.setText(R.string.trade_buy_mode);
+		titleTextView.setText(R.string.buy_qr_flow_display);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
@@ -39,7 +37,7 @@ public class SellCountFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				getActivity().getSupportFragmentManager().popBackStack();
+				getActivity().finish();
 			}
 		});
 
@@ -49,10 +47,9 @@ public class SellCountFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				SellQRCodeFragment fragment = new SellQRCodeFragment();
+				ScanUserKeyFragment fragment = new ScanUserKeyFragment();
 				Bundle b = new Bundle();
-				b.putSerializable("bit_num", "");
-				b.putSerializable("currency_num", "");
+				b.putInt("process_event", ProcessEvent.EVENT_BUY_QR);
 				fragment.setArguments(b);
 				getActivity()
 						.getSupportFragmentManager()
@@ -60,7 +57,7 @@ public class SellCountFragment extends NodeFragment {
 						.setTransition(
 								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 						.add(R.id.container, fragment)
-						.addToBackStack("sellcountfragment").commit();
+						.addToBackStack("sellflowdisplayfragment").commit();
 			}
 		});
 	}

@@ -15,6 +15,7 @@ import android.os.IBinder;
 import com.bitocean.atm.BitOceanATMApp;
 import com.bitocean.atm.service.ATMReceiver;
 import com.bitocean.atm.service.ATMService;
+import com.bitocean.atm.struct.LoginUserStruct;
 import com.bitocean.atm.struct.TypeRateStruct;
 /**
  * @author bing.liu
@@ -23,22 +24,24 @@ import com.bitocean.atm.struct.TypeRateStruct;
 public class AppManager extends BaseManager {
 	private static AppManager mInstance;
 
-	public final static int LOOP_TIMER = 300;
-	public static boolean isAdmin = false;
-	public static boolean isLoopTime = true;
+	public final static int LOOP_TIMER = 300;//循环时间
+	public static boolean isAdmin = false;//管理员模式
+	public static boolean isLoopTime = true;//是否循环
 	public static int loopTimer = LOOP_TIMER;
-	public static String public_keyString = null;
-	public static String currency_typeString = "JPY";
+	public static String public_keyString = null;//公钥
 	public static int versionCode = 0;
 	public static String versionNameString = null;
 	public static String DTM_UUID = null;
-	public static String DTM_CURRENCY = "RMB";
-	public static String DTM_STATE = "CHINA";
-	public static String DTM_OPERATORS = "BITOCEAN";
-	public static String DTM_BOX_OUT_CASH = "100";
-	public static ArrayList<String> bitType = new ArrayList<String>();
+	public static String DTM_CURRENCY = "RMB";//机器支持的法币类型
+	public static String DTM_STATE = "CHINA";//机器所在国家
+	public static String DTM_OPERATORS = "BITOCEAN";//机器所属运营商
+	public static String DTM_BOX_OUT_CASH = "100";//机器基准法币值
+	public static ArrayList<String> bitType = new ArrayList<String>();//
 	public static TypeRateStruct typeRateStructs = new TypeRateStruct();
-	//[bitcocean "btce","okcoin","huobi","btcc","bitstamp","bitfinex"]:
+	public static boolean isLogined = false;//是否需要登录
+	public static boolean isKycRegister = false;//是否需要kyc注册
+	public static boolean isNetEnable = true;
+	public static LoginUserStruct struct = null;
 	
 	public ATMReceiver atmReceiver;
 	public ATMService mService;
@@ -97,6 +100,20 @@ public class AppManager extends BaseManager {
 			AppManager.DTM_STATE = appInfo.metaData.getString("DTM_STATE");
 			AppManager.DTM_OPERATORS = appInfo.metaData.getString("DTM_OPERATORS");
 			AppManager.DTM_BOX_OUT_CASH = appInfo.metaData.getString("DTM_BOX_OUT_CASH");
+		}
+		
+		//是否需要登录
+		if(AppManager.DTM_STATE.equals("JAPAN")){
+			isLogined = false;
+		}else{
+			isLogined = true;
+		}
+		
+		//是否需要kyc注册
+		if(AppManager.DTM_STATE.equals("JAPAN")){
+			isKycRegister = false;
+		}else{
+			isKycRegister = true;
 		}
 		
 		if(pi != null){

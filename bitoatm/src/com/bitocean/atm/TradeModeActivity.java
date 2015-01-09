@@ -16,13 +16,6 @@ public class TradeModeActivity extends BaseTimerActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trade);
-
-		LoginUserStruct struct = (LoginUserStruct) getIntent()
-				.getSerializableExtra("loginuserstruct");
-		if (struct == null) {
-		} else {
-		}
-
 		initUI();
 	}
 

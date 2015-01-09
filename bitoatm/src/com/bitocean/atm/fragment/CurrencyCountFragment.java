@@ -2,19 +2,24 @@ package com.bitocean.atm.fragment;
 
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bitocean.atm.BuyQRActivity;
+import com.bitocean.atm.BuyWalletActivity;
 import com.bitocean.atm.R;
+import com.bitocean.atm.TradeModeActivity;
 import com.bitocean.atm.controller.NetServiceManager;
+import com.bitocean.atm.controller.ProcessEvent;
 import com.bitocean.atm.service.ATMBroadCastEvent;
-import com.bitocean.atm.struct.LoginAdminStruct;
+import com.bitocean.atm.struct.RedeemConfirmStruct;
+import com.bitocean.atm.struct.SellBitcoinQRStruct;
 import com.bitocean.atm.util.Util;
 
 import de.greenrobot.event.EventBus;
@@ -23,13 +28,21 @@ import de.greenrobot.event.EventBus;
  * @author bing.liu
  * 
  */
-public class AdminLoginFragment extends NodeFragment {
+public class CurrencyCountFragment extends NodeFragment {
+	private String user_public_key = null;
+	private int process_event = 0;
 	private ProgressDialog progressDialog = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		EventBus.getDefault().register(this, ATMBroadCastEvent.class);
+		mContext = getActivity().getApplicationContext();
+		Bundle b = getArguments();
+		if (b == null)
+			return;
+		user_public_key = (String) b.getString("user_public_key");
+		process_event = (int) b.getInt("process_event", 0);
 	}
 
 	@Override
@@ -43,28 +56,15 @@ public class AdminLoginFragment extends NodeFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_admin, null);
+		View v = mInflater.inflate(R.layout.fragment_sell_count, null);
 		initView(v);
 		return v;
 	}
 
 	private void initView(View v) {
-		final EditText nameEditText = (EditText) v.findViewById(R.id.name_edit);
-		final EditText passwordEditText = (EditText) v
-				.findViewById(R.id.password_edit);
-		Button loginButton = (Button) v.findViewById(R.id.login_btn);
-		loginButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				loginAdmin(nameEditText.getText().toString(), passwordEditText
-						.getText().toString());
-			}
-		});
-
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
-		titleTextView.setText(R.string.admin_prompt);
+		titleTextView.setText(R.string.buy_prompt);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
@@ -79,57 +79,58 @@ public class AdminLoginFragment extends NodeFragment {
 
 		Button nextButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.right_btn);
-		nextButton.setVisibility(View.INVISIBLE);
+		nextButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				checkProcessEvent();
+			}
+		});
 	}
 
-	private void loginAdmin(String admin_id, String admin_password) {
-		if (admin_id == null || admin_id.equals("")) {
-			new Util(getActivity()).showFeatureToast(getActivity().getString(
-					R.string.admin_name_error));
-			return;
+	private void checkProcessEvent() {
+		if (process_event == ProcessEvent.EVENT_SELL) {
+			// 纸钱包
+		} else if (process_event == ProcessEvent.EVENT_BUY_QR) {
+			// 二维码买币
+		} else if (process_event == ProcessEvent.EVENT_SELL) {
+			// 卖币
+			// 获取卖币码
+			// NetServiceManager.getInstance().redeemConfirm(redeemString);
+			progressDialog = new Util(getActivity())
+					.showProgressBar(getActivity().getString(R.string.wait));
 		}
-
-		if (admin_password == null || admin_password.equals("")) {
-			new Util(getActivity()).showFeatureToast(getActivity().getString(
-					R.string.admin_password_error));
-			return;
-		}
-		NetServiceManager.getInstance().loginAdmin(admin_id, admin_password);
-		progressDialog = new Util(getActivity()).showProgressBar(getActivity()
-				.getString(R.string.wait));
 	}
 
 	public void onEventMainThread(ATMBroadCastEvent event) {
 		switch (event.getType()) {
-		case ATMBroadCastEvent.EVENT_ADMIN_LOGIN_SUCCESS:
+		case ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_SUCCESS:
 			if (progressDialog != null) {
 				progressDialog.dismiss();
 				progressDialog = null;
 			}
-			LoginAdminStruct struct = (LoginAdminStruct) event.getObject();
+			SellBitcoinQRStruct struct = (SellBitcoinQRStruct) event
+					.getObject();
 			if ("success".equals(struct.resutlString)) {
-				KeyFragment keyFragment = new KeyFragment();
+				SellScanQRCodeFragment fragment = new SellScanQRCodeFragment();
 				Bundle b = new Bundle();
-				b.putSerializable("loginadminstruct", struct);
-				keyFragment.setArguments(b);
+				b.putSerializable("sellbitcoinqrstruct", struct);
+				fragment.setArguments(b);
 				getActivity()
 						.getSupportFragmentManager()
 						.beginTransaction()
 						.setTransition(
 								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-						.add(R.id.container, keyFragment)
-						.addToBackStack("adminfragment").commit();
+						.add(R.id.container, fragment)
+						.addToBackStack("currenycountfragment").commit();
 			} else if ("fail".equals(struct.resutlString)) {
 				String msgString = null;
 				switch (struct.reason) {
 				case 1:
-					msgString = getString(R.string.admin_login_fail_1);
+					msgString = getString(R.string.sell_qr_code_display_1);
 					break;
 				case 2:
-					msgString = getString(R.string.admin_login_fail_2);
-					break;
-				case 3:
-					msgString = getString(R.string.admin_login_fail_3);
+					msgString = getString(R.string.sell_qr_code_display_2);
 					break;
 				default:
 					break;
@@ -137,7 +138,7 @@ public class AdminLoginFragment extends NodeFragment {
 				new Util(getActivity()).showFeatureToast(msgString);
 			}
 			break;
-		case ATMBroadCastEvent.EVENT_ADMIN_LOGIN_FAIL:
+		case ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL:
 			if (progressDialog != null) {
 				progressDialog.dismiss();
 				progressDialog = null;

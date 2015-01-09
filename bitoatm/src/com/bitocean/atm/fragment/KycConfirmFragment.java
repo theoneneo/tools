@@ -1,35 +1,39 @@
 package com.bitocean.atm.fragment;
 
 import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
-import com.bitocean.atm.TradeModeActivity;
-import com.bitocean.atm.controller.NetServiceManager;
-import com.bitocean.atm.service.ATMBroadCastEvent;
 import com.bitocean.atm.struct.LoginUserStruct;
-import com.bitocean.atm.util.Util;
-
-import de.greenrobot.event.EventBus;
+import com.bitocean.atm.struct.RedeemConfirmStruct;
 /**
  * @author bing.liu
  * 
  */
-public class BillConfirmFragment extends NodeFragment {
+public class KycConfirmFragment extends NodeFragment {
+	private LoginUserStruct struct;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mContext = getActivity().getApplicationContext();
+		
+		Bundle b = getArguments();
+		if (b == null)
+			return;
+		struct = (LoginUserStruct) b.getSerializable("loginuserstruct");
+	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_bill_confirm, null);
+		View v = mInflater.inflate(R.layout.fragment_confirm, null);
 		initView(v);
 		return v;
 	}
@@ -37,44 +41,37 @@ public class BillConfirmFragment extends NodeFragment {
 	private void initView(View v) {
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
-		titleTextView.setText(R.string.user_login_prompt);
+		titleTextView.setText(R.string.confirm);
+		
+		TextView textView = (TextView) v.findViewById(R.id.text);
+//		textView.setText(reasonString);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
-		cancelButton.setText(R.string.back);
-		cancelButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				getActivity().getSupportFragmentManager().popBackStack();
-			}
-		});
+		cancelButton.setVisibility(View.INVISIBLE);
 
 		Button nextButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.right_btn);
-		nextButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				getActivity().finish();
-			}
-		});
+		nextButton.setVisibility(View.INVISIBLE);
 		
 		Button confirmButton = (Button) v.findViewById(R.id.confirm_btn);
 		confirmButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				BuyBillFragment fragment = new BuyBillFragment();
+				
+				RegisterPhotoFragment fragment = new RegisterPhotoFragment();
 				Bundle b = new Bundle();
+				b.putSerializable("loginuserstruct", struct);
 				fragment.setArguments(b);
+				
 				getActivity()
-						.getSupportFragmentManager()
-						.beginTransaction()
-						.setTransition(
-								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-						.add(R.id.container, fragment)
-						.addToBackStack("confirmfragment").commit();
+				.getSupportFragmentManager()
+				.beginTransaction()
+				.setTransition(
+						FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+				.add(R.id.container, fragment)
+				.addToBackStack("kycconfirmfragment").commit();
 			}
 		});
 	}

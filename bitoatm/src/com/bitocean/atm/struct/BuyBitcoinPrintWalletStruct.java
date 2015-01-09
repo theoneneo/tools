@@ -17,7 +17,7 @@ public class BuyBitcoinPrintWalletStruct implements Serializable{
 	 * 
 	 */
 	public String resutlString;
-	public String resonString;
+	public int reason;
 	public String wallet_public_key;
 	public String wallet_private_key;
 }

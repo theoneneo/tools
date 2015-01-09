@@ -1,7 +1,6 @@
 package com.bitocean.atm.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,16 +9,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
+import com.bitocean.atm.controller.AppManager;
+import com.bitocean.atm.controller.NetServiceManager;
+import com.bitocean.atm.util.Util;
 /**
  * @author bing.liu
  * 
  */
-public class RegisterSuccessFragment extends NodeFragment {
+public class SellConfirmWaitFragment extends NodeFragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_bill_confirm, null);
+		View v = mInflater.inflate(R.layout.fragment_confirm, null);
 		initView(v);
 		return v;
 	}
@@ -27,7 +29,10 @@ public class RegisterSuccessFragment extends NodeFragment {
 	private void initView(View v) {
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
-		titleTextView.setText(R.string.user_login_prompt);
+		titleTextView.setText(R.string.confirm);
+		
+		TextView textView = (TextView) v.findViewById(R.id.text);
+//		textView.setText(reasonString);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);
@@ -38,16 +43,32 @@ public class RegisterSuccessFragment extends NodeFragment {
 		nextButton.setVisibility(View.INVISIBLE);
 		
 		Button confirmButton = (Button) v.findViewById(R.id.confirm_btn);
-		confirmButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				getActivity()
-				.getSupportFragmentManager()
-				.popBackStack(
-						"userlogin",
-						FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		confirmButton.setVisibility(View.GONE);
+		
+		checkSellResult();
+	}
+	
+	private void checkSellResult(){
+		if(!AppManager.isNetEnable){
+			new Util(mContext).showFeatureToast(mContext
+					.getString(R.string.network_error));
+		}
+		
+		Thread sellThread = new Thread() {
+			public void run() {
+				while (true) {
+					NetServiceManager.getInstance().SellBitcoin
+					try {
+						sleep(6000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+
+				}
 			}
-		});
+		};
+		sellThread.start();
 	}
 }

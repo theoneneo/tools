@@ -1,6 +1,6 @@
 package com.bitocean.atm;
 
-import com.bitocean.atm.fragment.BuyQRFragment;
+import com.bitocean.atm.fragment.BuyQRFlowDisplayFragment;
 
 import android.os.Bundle;
 /**
@@ -8,7 +8,7 @@ import android.os.Bundle;
  *
  */
 public class BuyQRActivity extends BaseTimerActivity {
-	private BuyQRFragment buyQRFragment;
+	private BuyQRFlowDisplayFragment buyQRFlowDisplayFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class BuyQRActivity extends BaseTimerActivity {
 	}
 
 	private void initUI() {
-		buyQRFragment = (BuyQRFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.buy_qr_fragment);
+		buyQRFlowDisplayFragment = (BuyQRFlowDisplayFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.buy_qr_flow_display_fragment);
 	}
 }

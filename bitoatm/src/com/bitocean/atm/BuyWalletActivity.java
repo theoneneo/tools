@@ -1,6 +1,6 @@
 package com.bitocean.atm;
 
-import com.bitocean.atm.fragment.BuyCountFragment;
+import com.bitocean.atm.fragment.BuyWalletFlowDisplayFragment;
 
 import android.os.Bundle;
 /**
@@ -8,7 +8,7 @@ import android.os.Bundle;
  *
  */
 public class BuyWalletActivity extends BaseTimerActivity {
-	private BuyCountFragment buyCountFragment;
+	private BuyWalletFlowDisplayFragment buyWalletFlowDisplayFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class BuyWalletActivity extends BaseTimerActivity {
 	}
 
 	private void initUI() {
-		buyCountFragment = (BuyCountFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.buy_count_fragment);
+		buyWalletFlowDisplayFragment = (BuyWalletFlowDisplayFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.buy_wallet_flow_display_fragment);
 	}
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bitocean.atm.R;
 import com.bitocean.atm.TradeModeActivity;
+import com.bitocean.atm.controller.AppManager;
 import com.bitocean.atm.controller.NetServiceManager;
 import com.bitocean.atm.service.ATMBroadCastEvent;
 import com.bitocean.atm.struct.LoginUserStruct;
@@ -26,6 +27,7 @@ import de.greenrobot.event.EventBus;
  */
 public class UserLoginFragment extends NodeFragment {
 	private ProgressDialog progressDialog = null;
+	private String user_idString;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class UserLoginFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				user_idString = nameEditText.getText().toString();
 				loginUser(nameEditText.getText().toString(), passwordEditText
 						.getText().toString());
 			}
@@ -68,13 +71,25 @@ public class UserLoginFragment extends NodeFragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				getActivity()
-				.getSupportFragmentManager()
-				.beginTransaction()
-				.setTransition(
-						FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-				.add(R.id.container, new RegisterPhotoFragment())
-				.addToBackStack("userlogin").commit();
+				if(AppManager.isKycRegister){
+					getActivity()
+					.getSupportFragmentManager()
+					.beginTransaction()
+					.setTransition(
+							FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+					.add(R.id.container, new RegisterPhotoFragment())
+					.addToBackStack("userlogin").commit();
+				}else{
+					RegisterPhoneFragment fragment = new RegisterPhoneFragment();
+					getActivity()
+							.getSupportFragmentManager()
+							.beginTransaction()
+							.setTransition(
+									FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+							.add(R.id.container, fragment)
+							.addToBackStack("registerpassportfragment")
+							.commit();
+				}
 			}
 		});
 
@@ -110,6 +125,13 @@ public class UserLoginFragment extends NodeFragment {
 					R.string.admin_password_error));
 			return;
 		}
+		
+		if(!AppManager.isNetEnable){
+			new Util(mContext).showFeatureToast(mContext
+					.getString(R.string.network_error));
+			return;
+		}
+		
 		NetServiceManager.getInstance().loginUser(user_id, user_password);
 		progressDialog = new Util(getActivity()).showProgressBar(getActivity()
 				.getString(R.string.wait));
@@ -126,7 +148,21 @@ public class UserLoginFragment extends NodeFragment {
 			if ("success".equals(struct.resutlString)) {
 				goToTradeModeActivity(struct);
 			} else if ("fail".equals(struct.resutlString)) {
-				new Util(getActivity()).showFeatureToast(struct.resonString);
+				String msgString = null;
+				switch (struct.reason) {
+				case 1:
+					msgString = getString(R.string.user_login_fail_1);
+					break;
+				case 2:
+					msgString = getString(R.string.user_login_fail_2);
+					break;
+				case 3:
+					msgString = getString(R.string.user_login_fail_3);
+					break;
+				default:
+					break;
+				}
+				new Util(getActivity()).showFeatureToast(msgString);
 			}
 			break;
 		case ATMBroadCastEvent.EVENT_USER_LOGIN_FAIL:
@@ -143,9 +179,27 @@ public class UserLoginFragment extends NodeFragment {
 	}
 	
 	private void goToTradeModeActivity(LoginUserStruct struct){
-		Intent intent = new Intent(getActivity(), TradeModeActivity.class);
-		intent.putExtra("loginuserstruct", struct);
-		startActivity(intent);
-		getActivity().finish();
+		if(("NO_KYC").equals(struct.userTypeString) && AppManager.isKycRegister){
+			//如果用户没有kyc,但是当前需要kyc,走验证kyc流程
+			KycConfirmFragment fragment = new KycConfirmFragment();
+			Bundle b = new Bundle();
+			b.putSerializable("loginuserstruct", struct);
+			fragment.setArguments(b);
+			
+			getActivity()
+			.getSupportFragmentManager()
+			.beginTransaction()
+			.setTransition(
+					FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+			.add(R.id.container, fragment)
+			.addToBackStack("userlogin").commit();
+		}else{
+			Intent resultIntent = new Intent();
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("loginuserstruct", struct);
+			resultIntent.putExtras(bundle);
+			getActivity().setResult(getActivity().RESULT_OK, resultIntent);
+			getActivity().finish();	
+		}
 	}
 }
