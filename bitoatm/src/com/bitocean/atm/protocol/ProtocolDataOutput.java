@@ -131,13 +131,13 @@ public class ProtocolDataOutput {
 	}
 	
 	//卖币确认
-	public static JSONObject getSellBitcoinMessage(String user_public_key, String bit_type, String user_id, int currency_num)
+	public static JSONObject getSellBitcoinConfirm(String user_public_key, String user_id, int currency_num)
 			throws JSONException {
 		try {
 			JSONObject output = new JSONObject();
 			output.put("user_public_key", user_public_key);
 			output.put("dtm_uuid", AppManager.DTM_UUID);
-			output.put("bit_type", bit_type);
+			output.put("bit_type", "bitcoin");
 			output.put("user_id", user_id);
 			output.put("dtm_currency", AppManager.DTM_CURRENCY);
 			output.put("currency_num", currency_num);
@@ -151,13 +151,13 @@ public class ProtocolDataOutput {
 	}
 	
 	//二维码买币
-	public static JSONObject buyBitcoinQR(String user_public_key, String bit_type, String user_id, int currency_num, String currency_type)
+	public static JSONObject buyBitcoinQR(String user_public_key, String user_id, int currency_num)
 			throws JSONException {
 		try {
 			JSONObject output = new JSONObject();
 			output.put("user_public_key", user_public_key);
 			output.put("dtm_uuid", AppManager.DTM_UUID);
-			output.put("bit_type", bit_type);
+			output.put("bit_type", "bitcoin");
 			output.put("user_id", user_id);
 			output.put("dtm_currency", AppManager.DTM_CURRENCY);
 			output.put("currency_num", currency_num);
@@ -171,13 +171,12 @@ public class ProtocolDataOutput {
 	}
 	
 	//纸钱包买币
-	public static JSONObject buyBitcoinPrintWallet(String user_public_key, String bit_type, String user_id, int currency_num, String currency_type)
+	public static JSONObject buyBitcoinPrintWallet(String user_id, int currency_num)
 			throws JSONException {
 		try {
 			JSONObject output = new JSONObject();
-			output.put("user_public_key", user_public_key);
 			output.put("dtm_uuid", AppManager.DTM_UUID);
-			output.put("bit_type", bit_type);
+			output.put("bit_type", "bitcoin");
 			output.put("user_id", user_id);
 			output.put("dtm_currency", AppManager.DTM_CURRENCY);
 			output.put("currency_num", currency_num);

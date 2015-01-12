@@ -18,6 +18,7 @@
 	<string name="back">Back</string>
 	<string name="out">Out</string>
 	<string name="confirm">Confirm</string>
+	<string name="complete_tran">The completion of the transaction</string>
 		
 	<string name="wifi_prompt">Welcome , please setup</string>
 	<string name="wifi_default">Please set wifi</string>
@@ -42,6 +43,8 @@
 	<string name="buy_prompt">buy bitcoin</string>
 	<string name="buy_qr_prompt">QR buy</string>
 	<string name="buy_pw_prompt">Print wallet buy</string>
+	<string name="buy_pay_confirm_prompt">Pay confirm</string>
+	<string name="buy_bill_prompt">Please insert the currency</string>
 	<string name="sell_prompt">Sell QR</string>
 	
 	<string name="redeem_prompt">Redeem</string>	
@@ -81,12 +84,16 @@
 	<string name="sell_qr_code_display_2">Get the sell qr code fail</string>
 	<string name="sell_qr_code_flow_prompt">Please scan this QR code and transfer accounts the bitcoin </string>
 	<string name="sell_qr_code_large_prompt">This is a large sum transaction, receive a redemption code after 15 minutes of redemption</string>
+	<string name="sell_bitcoin_display_1">Orders not found</string>
+	<string name="sell_bitcoin_display_2">Unfinished transactions</string>
 	
 	<string name="buy_qr_flow_display">Buy QR flow display</string>
 	<string name="buy_qr_flow_display_1">Please scan your public key</string>
 	<string name="buy_qr_flow_display_2">Please set currency</string>
 	<string name="buy_qr_flow_display_3">Please insert money</string>
 	<string name="buy_qr_flow_display_4">Wait broadcast!</string>
+	<string name="buy_fail_reason_1">Coin not enough, please wait a monent</string>
+	<string name="buy_fail_reason_2">Failed purchase</string>
 	
 	<string name="buy_wallet_flow_display">Buy wallet flow display</string>
 	<string name="buy_wallet_flow_display_1">Please set currency</string>

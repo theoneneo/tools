@@ -133,6 +133,12 @@ public class AppManager extends BaseManager {
 		isAdmin = mSharedPreferences.getBoolean("isadmin", false);
 	}
 	
+	public static String getUserId(){
+		if(struct != null)
+			return struct.user_idString;
+		return null;
+	}
+	
 	public void bindService(){
 		Intent intent = new Intent().setClass(getContext() , ATMService.class ); 
 		getContext().bindService(intent , mConnection, getContext().BIND_AUTO_CREATE);

@@ -15,6 +15,7 @@ import com.bitocean.atm.BuyQRActivity;
 import com.bitocean.atm.BuyWalletActivity;
 import com.bitocean.atm.R;
 import com.bitocean.atm.TradeModeActivity;
+import com.bitocean.atm.controller.AppManager;
 import com.bitocean.atm.controller.NetServiceManager;
 import com.bitocean.atm.controller.ProcessEvent;
 import com.bitocean.atm.service.ATMBroadCastEvent;
@@ -32,6 +33,7 @@ public class CurrencyCountFragment extends NodeFragment {
 	private String user_public_key = null;
 	private int process_event = 0;
 	private ProgressDialog progressDialog = null;
+	private int currency_num;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -90,15 +92,34 @@ public class CurrencyCountFragment extends NodeFragment {
 
 	private void checkProcessEvent() {
 		if (process_event == ProcessEvent.EVENT_SELL) {
-			// 纸钱包
-		} else if (process_event == ProcessEvent.EVENT_BUY_QR) {
-			// 二维码买币
-		} else if (process_event == ProcessEvent.EVENT_SELL) {
 			// 卖币
 			// 获取卖币码
-			// NetServiceManager.getInstance().redeemConfirm(redeemString);
+			if(!AppManager.isNetEnable){
+				new Util(mContext).showFeatureToast(mContext
+						.getString(R.string.network_error));
+				return;
+			}
+			
+			NetServiceManager.getInstance().getSellQRCode(user_public_key,
+					AppManager.getUserId(), currency_num);
 			progressDialog = new Util(getActivity())
 					.showProgressBar(getActivity().getString(R.string.wait));
+		} else {
+			// 二维码买币
+			// 纸钱包
+			PayConfirmFragment fragment = new PayConfirmFragment();
+			Bundle b = new Bundle();
+			b.putString("user_public_key", user_public_key);
+			b.putInt("currency_num", currency_num);
+			b.putInt("process_event", process_event);
+			fragment.setArguments(b);
+			getActivity()
+					.getSupportFragmentManager()
+					.beginTransaction()
+					.setTransition(
+							FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+					.add(R.id.container, fragment)
+					.addToBackStack("currenycountfragment").commit();
 		}
 	}
 
@@ -115,6 +136,9 @@ public class CurrencyCountFragment extends NodeFragment {
 				SellScanQRCodeFragment fragment = new SellScanQRCodeFragment();
 				Bundle b = new Bundle();
 				b.putSerializable("sellbitcoinqrstruct", struct);
+				b.putString("user_public_key", user_public_key);
+				b.putInt("currency_num", currency_num);
+				b.putInt("process_event", process_event);
 				fragment.setArguments(b);
 				getActivity()
 						.getSupportFragmentManager()

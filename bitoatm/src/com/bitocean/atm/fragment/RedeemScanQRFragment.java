@@ -135,6 +135,12 @@ public class RedeemScanQRFragment extends NodeFragment {
 	}
 
 	private void redeemConfirm(String redeemString) {
+		if(!AppManager.isNetEnable){
+			new Util(mContext).showFeatureToast(mContext
+					.getString(R.string.network_error));
+			return;
+		}
+		
 		if(redeemString == null){
 			new Util(getActivity()).showFeatureToast(getString(R.string.check_redeem_code));
 			return;

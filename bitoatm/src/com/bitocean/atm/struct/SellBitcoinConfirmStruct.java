@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author bing.liu
  *
  */
-public class SellBitcoinMessageStruct implements Serializable{
+public class SellBitcoinConfirmStruct implements Serializable{
 	/**
 	 * 
 	 */
@@ -20,7 +20,7 @@ public class SellBitcoinMessageStruct implements Serializable{
 	public String resutlString;
 	public int reason;
 	public String user_public_key;
-	public String user_id;
-	public String currency_codeString;
+	public String dtm_currency;
+	public String redeem_code;
 	public double currency_num;
 }

@@ -23,7 +23,6 @@ import com.bitocean.atm.BitOceanATMApp;
 import com.bitocean.atm.protocol.ProtocolDataInput;
 import com.bitocean.atm.protocol.ProtocolDataOutput;
 import com.bitocean.atm.service.ATMBroadCastEvent;
-import com.google.common.io.Files;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -52,6 +51,8 @@ public class NetServiceManager extends BaseManager {
 			+ "redeemconfirm_bit.py";
 	private static final String NET_SELL_QR_CODE = NET_SERVER + "sellqr_bit.py";
 	private static final String NET_SELL_BITCOIN = NET_SERVER + "sell_bit.py";
+	private static final String NET_BUY_QR_BITCOIN = NET_SERVER + "buy_qr_bit.py";
+	private static final String NET_BUY_WALLET_BITCOIN = NET_SERVER + "buy_wallet_bit.py";
 
 	private NetServiceManager(Application app) {
 		super(app);
@@ -512,9 +513,9 @@ public class NetServiceManager extends BaseManager {
 		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
 				.getContext());
 		try {
-			JSONObject obj = ProtocolDataOutput.getSellQRCode(user_public_key,
+			JSONObject obj = ProtocolDataOutput.getSellBitcoinConfirm(user_public_key,
 					user_id, currency_num);
-			mQueue.add(new JsonObjectRequest(Method.POST, NET_REDEEM_CONFIRM,
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_SELL_BITCOIN,
 					obj, new Listener() {
 
 						@Override
@@ -524,15 +525,15 @@ public class NetServiceManager extends BaseManager {
 
 								EventBus.getDefault()
 										.post(new ATMBroadCastEvent(
-												ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_SUCCESS,
+												ATMBroadCastEvent.EVENT_GET_SELL_SUCCESS,
 												ProtocolDataInput
-														.parseSellQRCodeToJson((JSONObject) arg0)));
+														.parseSellBitcoinConfirmToJson((JSONObject) arg0)));
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 								EventBus.getDefault()
 										.post(new ATMBroadCastEvent(
-												ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL,
+												ATMBroadCastEvent.EVENT_GET_SELL_FAIL,
 												e.getMessage()));
 							}
 						}
@@ -547,7 +548,111 @@ public class NetServiceManager extends BaseManager {
 								msg = arg0.getLocalizedMessage();
 							EventBus.getDefault()
 									.post(new ATMBroadCastEvent(
-											ATMBroadCastEvent.EVENT_GET_SELL_QR_CODE_FAIL,
+											ATMBroadCastEvent.EVENT_GET_SELL_FAIL,
+											msg));
+						}
+					}));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mQueue.start();
+	}
+	
+	//二维码买币
+	public void BuyQRBitcoin(String user_public_key, String user_id,
+			int currency_num) {
+		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
+				.getContext());
+		try {
+			JSONObject obj = ProtocolDataOutput.buyBitcoinQR(user_public_key,
+					user_id, currency_num);
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_BUY_QR_BITCOIN,
+					obj, new Listener() {
+
+						@Override
+						public void onResponse(Object arg0) {
+							// TODO Auto-generated method stub
+							try {
+
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_BUY_QR_SUCCESS,
+												ProtocolDataInput
+														.parseBuyBitcoinQRToJson((JSONObject) arg0)));
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_BUY_QR_FAIL,
+												e.getMessage()));
+							}
+						}
+					}, new ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError arg0) {
+							// TODO Auto-generated method stub
+							String msg = null;
+							if (arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
+							EventBus.getDefault()
+									.post(new ATMBroadCastEvent(
+											ATMBroadCastEvent.EVENT_BUY_QR_FAIL,
+											msg));
+						}
+					}));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mQueue.start();
+	}
+	
+	//纸钱包买币
+	public void BuyWalletBitcoin(String user_id,
+			int currency_num) {
+		RequestQueue mQueue = Volley.newRequestQueue(BitOceanATMApp
+				.getContext());
+		try {
+			JSONObject obj = ProtocolDataOutput.buyBitcoinPrintWallet(
+					user_id, currency_num);
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_BUY_WALLET_BITCOIN,
+					obj, new Listener() {
+
+						@Override
+						public void onResponse(Object arg0) {
+							// TODO Auto-generated method stub
+							try {
+
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_BUY_WALLET_SUCCESS,
+												ProtocolDataInput
+														.parseBuyBitcoinPrintWalletToJson((JSONObject) arg0)));
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								EventBus.getDefault()
+										.post(new ATMBroadCastEvent(
+												ATMBroadCastEvent.EVENT_BUY_WALLET_FAIL,
+												e.getMessage()));
+							}
+						}
+					}, new ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError arg0) {
+							// TODO Auto-generated method stub
+							String msg = null;
+							if (arg0.getMessage() != null)
+								msg = arg0.getMessage();
+							else
+								msg = arg0.getLocalizedMessage();
+							EventBus.getDefault()
+									.post(new ATMBroadCastEvent(
+											ATMBroadCastEvent.EVENT_BUY_WALLET_FAIL,
 											msg));
 						}
 					}));

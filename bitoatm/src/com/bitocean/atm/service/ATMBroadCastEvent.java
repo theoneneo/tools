@@ -39,9 +39,18 @@ public class ATMBroadCastEvent {
 	//用户kyc注册======================
 	public final static int EVENT_USER_REGISTER_KYC_SUCCESS = BASE_EVENT + 24;
 	public final static int EVENT_USER_REGISTER_KYC_FAIL = BASE_EVENT + 25;
-	//用户kyc注册======================
+	//获取卖币bitcoin qr======================
 	public final static int EVENT_GET_SELL_QR_CODE_SUCCESS = BASE_EVENT + 26;
 	public final static int EVENT_GET_SELL_QR_CODE_FAIL = BASE_EVENT + 27;
+	//卖币确认======================
+	public final static int EVENT_GET_SELL_SUCCESS = BASE_EVENT + 28;
+	public final static int EVENT_GET_SELL_FAIL = BASE_EVENT + 29;
+	//卖币确认======================
+	public final static int EVENT_BUY_QR_SUCCESS = BASE_EVENT + 30;
+	public final static int EVENT_BUY_QR_FAIL = BASE_EVENT + 31;
+	//卖币确认======================
+	public final static int EVENT_BUY_WALLET_SUCCESS = BASE_EVENT + 32;
+	public final static int EVENT_BUY_WALLET_FAIL = BASE_EVENT + 33;
 	
 	private int type;
 	private Object obj;

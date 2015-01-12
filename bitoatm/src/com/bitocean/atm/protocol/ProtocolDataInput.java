@@ -11,7 +11,7 @@ import com.bitocean.atm.struct.LoginAdminStruct;
 import com.bitocean.atm.struct.LoginUserStruct;
 import com.bitocean.atm.struct.RateStruct;
 import com.bitocean.atm.struct.RedeemConfirmStruct;
-import com.bitocean.atm.struct.SellBitcoinMessageStruct;
+import com.bitocean.atm.struct.SellBitcoinConfirmStruct;
 import com.bitocean.atm.struct.SellBitcoinQRStruct;
 import com.bitocean.atm.struct.VerifyCodeStruct;
 
@@ -165,18 +165,19 @@ public class ProtocolDataInput {
 	}
 
 	// 获取卖币确认 需要轮询获取
-	public static SellBitcoinMessageStruct parseSellBitcoinMessageToJson(
+	public static SellBitcoinConfirmStruct parseSellBitcoinConfirmToJson(
 			JSONObject obj) throws JSONException {
 		if (obj == null) {
 			return null;
 		}
 		try {
-			SellBitcoinMessageStruct struct = new SellBitcoinMessageStruct();
+			SellBitcoinConfirmStruct struct = new SellBitcoinConfirmStruct();
 			struct.resutlString = obj.getString("result");
 			struct.reason = obj.getInt("reason");
 			struct.user_public_key = obj.getString("user_public_key");
-			struct.currency_codeString = obj.getString("currency_code");
+			struct.dtm_currency = obj.getString("dtm_currency");
 			struct.currency_num = obj.getDouble("currency_num");
+			struct.redeem_code = obj.getString("redeem_code");
 			return struct;
 		} catch (JSONException ex) {
 			ex.printStackTrace();
@@ -197,6 +198,7 @@ public class ProtocolDataInput {
 			struct.resutlString = obj.getString("result");
 			struct.reason = obj.getInt("reason");
 			struct.user_public_key = obj.getString("user_public_key");
+			struct.bit_type = obj.getString("bit_type");
 			struct.bitcoin_num = obj.getDouble("bitcoin_num");
 			return struct;
 		} catch (JSONException ex) {
@@ -219,6 +221,7 @@ public class ProtocolDataInput {
 			struct.reason = obj.getInt("reason");
 			struct.wallet_public_key = obj.getString("wallet_public_key");
 			struct.wallet_private_key = obj.getString("wallet_private_key");
+			struct.bitcoin_num = obj.getDouble("bitcoin_num");
 			return struct;
 		} catch (JSONException ex) {
 			ex.printStackTrace();
