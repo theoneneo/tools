@@ -58,7 +58,7 @@ public class CurrencyCountFragment extends NodeFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
-		View v = mInflater.inflate(R.layout.fragment_sell_count, null);
+		View v = mInflater.inflate(R.layout.fragment_currency_count, null);
 		initView(v);
 		return v;
 	}

@@ -23,6 +23,7 @@ import com.bitocean.atm.BitOceanATMApp;
 import com.bitocean.atm.protocol.ProtocolDataInput;
 import com.bitocean.atm.protocol.ProtocolDataOutput;
 import com.bitocean.atm.service.ATMBroadCastEvent;
+import com.google.common.io.Files;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -463,7 +464,7 @@ public class NetServiceManager extends BaseManager {
 		try {
 			JSONObject obj = ProtocolDataOutput.getSellQRCode(user_public_key,
 					user_id, currency_num);
-			mQueue.add(new JsonObjectRequest(Method.POST, NET_REDEEM_CONFIRM,
+			mQueue.add(new JsonObjectRequest(Method.POST, NET_SELL_QR_CODE,
 					obj, new Listener() {
 
 						@Override
