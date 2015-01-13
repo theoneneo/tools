@@ -51,6 +51,8 @@ public class ScanUserKeyFragment extends NodeFragment {
 		TextView titleTextView = (TextView) v.findViewById(R.id.title_text)
 				.findViewById(R.id.view_text);
 		titleTextView.setText(R.string.scan_user_key_prompt);
+		
+		key_text = (TextView)v.findViewById(R.id.key_text);
 
 		Button cancelButton = (Button) v.findViewById(R.id.bottom_button)
 				.findViewById(R.id.left_btn);

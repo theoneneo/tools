@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bitocean.atm.BuyQRActivity;
@@ -28,7 +29,7 @@ public class BuyModeFragment extends NodeFragment {
 	}
 
 	private void initView(View v) {
-		Button buyQRButton = (Button) v.findViewById(R.id.buy_qr);
+		ImageButton buyQRButton = (ImageButton) v.findViewById(R.id.buy_qr);
 		buyQRButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -37,7 +38,7 @@ public class BuyModeFragment extends NodeFragment {
 			}
 		});
 
-		Button buyWalletButton = (Button) v.findViewById(R.id.buy_wallet);
+		ImageButton buyWalletButton = (ImageButton) v.findViewById(R.id.buy_wallet);
 		buyWalletButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
