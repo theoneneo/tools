@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.bitocean.atm.QrCaptureActivity;
 import com.bitocean.atm.R;
-import com.bitocean.atm.controller.ProcessEvent;
+import com.bitocean.atm.service.ProcessEvent;
 import com.bitocean.atm.struct.LoginAdminStruct;
 import com.bitocean.atm.util.Util;
 

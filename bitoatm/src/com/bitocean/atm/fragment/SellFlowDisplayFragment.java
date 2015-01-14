@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
-import com.bitocean.atm.controller.ProcessEvent;
+import com.bitocean.atm.service.ProcessEvent;
 
 /**
  * @author bing.liu

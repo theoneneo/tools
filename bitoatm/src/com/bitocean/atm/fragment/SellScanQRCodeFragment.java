@@ -1,10 +1,17 @@
 package com.bitocean.atm.fragment;
 
 import java.io.File;
+import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 
 import android.app.FragmentTransaction;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +22,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bitocean.atm.R;
-import com.bitocean.atm.controller.ProcessEvent;
-import com.bitocean.atm.service.ATMBroadCastEvent;
 import com.bitocean.atm.struct.SellBitcoinQRStruct;
-
-import de.greenrobot.event.EventBus;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 /**
  * @author bing.liu
@@ -30,6 +39,8 @@ public class SellScanQRCodeFragment extends NodeFragment {
 	private String user_public_key = null;
 	private int currency_num = 0;
 	private int process_event = 0;
+	private String path;
+	private ImageView qr_image;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,9 +83,9 @@ public class SellScanQRCodeFragment extends NodeFragment {
 			}
 		});
 
-		createCode();
-		ImageView qr_image = (ImageView) v.findViewById(R.id.qr_image);
-//		qr_image.setImageBitmap(bm);
+		qr_image = (ImageView) v.findViewById(R.id.qr_image);
+		if (struct != null)
+			qr_image.setImageBitmap(generateQRCode(struct.bitcoin_qr));
 
 		if (struct.quota_num == 0) {
 			TextView large_prompt_text = (TextView) v
@@ -105,29 +116,35 @@ public class SellScanQRCodeFragment extends NodeFragment {
 		});
 	}
 
-	private void createCode() {
-		String text = "http://blog.csdn.net/gao36951";
-		// int width = 300;
-		// int height = 300;
-		// // 二维码的图片格式
-		// String format = "png";
-		// /**
-		// * 设置二维码的参数
-		// */
-		// Hashtable<EncodeHintType, Object> hints = new
-		// Hashtable<EncodeHintType, Object>();
-		// // 内容所使用编码
-		// hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-		// try {
-		// BitMatrix bitMatrix = new
-		// MultiFormatWriter().encode(text,BarcodeFormat.QR_CODE,width,height,hints);
-		// // 生成二维码
-		// File outputFile = new File("");
-		// MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
+	private Bitmap bitMatrix2Bitmap(BitMatrix matrix) {
+		int w = matrix.getWidth();
+		int h = matrix.getHeight();
+		int[] rawData = new int[w * h];
+		for (int i = 0; i < w; i++) {
+			for (int j = 0; j < h; j++) {
+				int color = Color.WHITE;
+				if (matrix.get(i, j)) {
+					color = Color.BLACK;
+				}
+				rawData[i + (j * w)] = color;
+			}
+		}
 
+		Bitmap bitmap = Bitmap.createBitmap(w, h, Config.RGB_565);
+		bitmap.setPixels(rawData, 0, w, 0, 0, w, h);
+		return bitmap;
+	}
+
+	private Bitmap generateQRCode(String content) {
+		try {
+			QRCodeWriter writer = new QRCodeWriter();
+			// MultiFormatWriter writer = new MultiFormatWriter();
+			BitMatrix matrix = writer.encode(content, BarcodeFormat.QR_CODE,
+					500, 500);
+			return bitMatrix2Bitmap(matrix);
+		} catch (WriterException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

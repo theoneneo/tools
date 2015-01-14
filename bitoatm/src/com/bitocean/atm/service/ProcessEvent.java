@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bitocean.atm.controller;
+package com.bitocean.atm.service;
 
 /**
  * @author bing.liu
