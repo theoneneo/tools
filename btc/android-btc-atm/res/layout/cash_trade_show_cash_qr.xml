@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- AUTHOR: F, DATE: 2014.6.2 -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/cashtrade_showcashqr_tradetype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_large"/>
+
+    <TextView
+            android:id="@+id/cashtrade_showcashqr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="65dp"
+            android:gravity="center"
+            android:text="@string/cashtrade_scq_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_large"/>
+
+    <LinearLayout
+            android:layout_width="720dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+        <LinearLayout
+                android:layout_width="420dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/cashtrade_showcashqr_hint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:gravity="left"
+                    android:text="@string/cashtrade_scq_hint1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_normal"/>
+
+            <TextView
+                    android:id="@+id/cashtrade_showcashqr_hint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="@string/cashtrade_scq_hint2"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_small"/>
+
+            <LinearLayout
+                    android:layout_width="420dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="50dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/cashtrade_showcashqr_btc_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cashtrade_scq_btc_title"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_small"/>
+
+                <TextView
+                        android:id="@+id/cashtrade_showcashqr_btc_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_small"/>
+
+                <TextView
+                        android:id="@+id/cashtrade_showcashqr_btc_abb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="@string/btc_abb"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_small"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="420dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/cashtrade_showcashqr_cash_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/cashtrade_scq_cash_title"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_small"/>
+
+                <TextView
+                        android:id="@+id/cashtrade_showcashqr_cash_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_small"/>
+
+                <TextView
+                        android:id="@+id/cashtrade_showcashqr_cash_abb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="3dp"
+                        android:text="@string/cash_abb"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_small"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+                android:id="@+id/cashtrade_showcashqr_qr"
+                android:layout_width="@dimen/wallet_address_qr_size_large"
+                android:layout_height="@dimen/wallet_address_qr_size_large"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/qrcode_frame"
+                android:focusable="true"
+                android:scaleType="centerInside"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/cashtrade_showcashqr_fns_btn"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_normal3"
+            android:gravity="center"
+            android:text="@string/finish_trade"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_small"/>
+
+</LinearLayout>

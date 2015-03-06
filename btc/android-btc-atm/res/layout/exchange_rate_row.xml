@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    >
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="买入比特币"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_large" />
+    <TextView
+        android:id="@+id/exchangerate_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/font_size_large"
+        android:text="汇  率  提  示"
+        />
+   <TextView
+        android:id="@+id/exchangerate_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/cashtrade_er_hint"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_small" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/exchangerate_btc_abb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="BTC"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="="
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal" />
+
+        <com.mybitcoin.wallet.ui.CurrencyTextView
+            android:id="@+id/exchange_rate_row_cny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+            android:id="@+id/exchangerate_cash_abb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="RMB"
+            android:textColor="@color/red"
+            android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/btnCancel"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="350dp"
+            android:background="@drawable/btn_normal3"
+            android:gravity="center"
+            android:text="@string/cancel_trade"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_small" />
+
+        <TextView
+                android:id="@+id/btnNext"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_normal3"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@drawable/btn_color"
+                android:textSize="@dimen/font_size_small" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- AUTHOR: F, DATE: 2014.5.31 -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/welcome_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcomepage_background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/welcomepage_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:text="@string/welcomepage_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_large" />
+
+    <TextView
+        android:id="@+id/welcomepage_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomepage_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/welcomepage_hint"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_small" />
+
+    <LinearLayout
+        android:id="@+id/linea1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="BUY 1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/buy_btc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="BTC"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="="
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal" />
+
+        <com.mybitcoin.wallet.ui.CurrencyTextView
+            android:id="@+id/buy_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_small" />
+
+        <TextView
+            android:id="@+id/buy_dw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="RMB"
+            android:textColor="@color/red"
+            android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linea1"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="SELL 1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sell_btc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="BTC"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="="
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal" />
+
+        <com.mybitcoin.wallet.ui.CurrencyTextView
+            android:id="@+id/sell_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_small" />
+
+        <TextView
+            android:id="@+id/sell_dw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="RMB"
+            android:textColor="@color/red"
+            android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>
+
+</RelativeLayout>

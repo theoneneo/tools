@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.mybitcoin.wallet"
+          android:versionCode="1"
+          android:versionName="1.0">
+
+    <uses-sdk
+            android:minSdkVersion="11"
+            android:targetSdkVersion="15"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    
+    <uses-feature
+            android:name="android.hardware.touchscreen"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.nfc"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.camera"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.camera.front"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.camera.autofocus"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.camera.flash"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.screen.landscape"
+            android:required="false"/>
+    <uses-feature
+            android:name="android.hardware.bluetooth"
+            android:required="false"/>
+
+    <supports-screens
+            android:anyDensity="true"
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:smallScreens="true"
+            android:xlargeScreens="true"/>
+
+    <application
+            android:name="com.mybitcoin.wallet.WalletApplication"
+            android:allowBackup="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/app_icon"
+            android:label="@string/app_name"
+            android:theme="@style/FullScreen"
+            android:vmSafeMode="false"
+            >
+
+        <!-- AUTHOR: F, DATE: 2014.6.1 -->
+        <activity
+                android:name="com.mybitcoin.wallet.ui.WelcomePageActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:screenOrientation="landscape"
+                android:launchMode="singleTask">
+                <intent-filter>
+                	<action android:name="android.intent.action.VIEW" />
+                	<category android:name="android.intent.category.DEFAULT" />
+            	</intent-filter>
+        </activity>
+        <activity
+            android:name="com.mybitcoin.wallet.ui.first.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+		<activity
+                android:name="com.mybitcoin.wallet.ui.TradeModeActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeExchangeRatesActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeInputActivity"
+                android:configChanges="locale"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeRequestCoinActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeCheckPaymentActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeCheckPaymentTimeoutActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeShowCashQrActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeShowScanQrActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeScanQrActivity"
+                android:configChanges="orientation|keyboard|keyboardHidden"
+                android:screenOrientation="landscape"
+                android:stateNotNeeded="true"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeCheckingoutActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeCashOutActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeKycLoginActivity"
+                android:configChanges="locale"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeKycRegister1Activity"
+                android:configChanges="locale"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeKycRegister2Activity"
+                android:configChanges="locale"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeKycRegister3Activity"
+                android:configChanges="locale"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeKycSuccessActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeKycFailureActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+        
+                <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeRegisterSuccessActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeRegisterFailureActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+        
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeSuccessActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradeFailureActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.CashTradePauseActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:launchMode="singleTask"/>
+
+        <provider
+                android:name="com.mybitcoin.wallet.CashTradeInfoProvider"
+                android:authorities="com.mybitcoin.wallet.cash_trade_info"
+                android:exported="false"/>
+        <!-- AUTHOR: F, DATE: 2014.6.1, END -->
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.ExchangeRatesActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:label="@string/exchange_rates_activity_title"
+                android:screenOrientation="landscape"/>
+
+        <activity-alias
+                android:name="com.mybitcoin.wallet.WalletActivity"
+                android:targetActivity="com.mybitcoin.wallet.ui.ExchangeRatesActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <data android:mimeType="application/x-btctx"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+                android:name="com.mybitcoin.wallet.ui.SendCoinsActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:label="@string/send_coins_activity_title"
+                android:screenOrientation="landscape"
+                android:windowSoftInputMode="adjustResize">
+            <intent-filter android:label="@string/send_coins_activity_title">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <data android:scheme="bitcoin"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter android:label="@string/send_coins_activity_title">
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <data android:scheme="bitcoin"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter android:label="@string/send_coins_activity_title">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <data android:mimeType="application/bitcoin-paymentrequest"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter android:label="@string/send_coins_activity_title">
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <data android:mimeType="application/bitcoin-paymentrequest"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.SendCoinsQrActivity"
+                android:configChanges="keyboard|keyboardHidden">
+        </activity>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.RequestCoinsActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:label="@string/request_coins_activity_title"
+                android:screenOrientation="landscape"
+                android:windowSoftInputMode="adjustResize"/>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.AddressBookActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:label="@string/address_book_activity_title"
+                android:screenOrientation="landscape"/>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.NetworkMonitorActivity"
+                android:configChanges="keyboard|keyboardHidden"
+                android:label="@string/network_monitor_activity_title"
+                android:screenOrientation="landscape"/>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.PreferencesActivity"
+                android:label="@string/preferences_activity_title"
+                android:screenOrientation="landscape"/>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.AboutActivity"
+                android:label="@string/about_title"
+                android:screenOrientation="landscape"/>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.ImportKeysActivity"
+                android:configChanges="orientation|keyboard|keyboardHidden"
+                android:theme="@style/My.Theme.Dialog">
+            <intent-filter android:label="@string/import_keys_intent_filter_action">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:mimeType="x-bitcoin/private-keys"/>
+                <data android:mimeType="application/octet-stream"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.ScanActivity"
+                android:configChanges="orientation|keyboard|keyboardHidden"
+                android:screenOrientation="landscape"
+                android:stateNotNeeded="true"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+                android:name="com.mybitcoin.wallet.ui.SerialPortPreferences"
+                android:label="@string/setup_serialport"/>
+        <activity android:name=".ui.ShowNotesActivity"
+            	android:screenOrientation="landscape"
+            />
+        <activity android:name=".ui.SelectOperationActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.TransFailedActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.TransSuccessActivity"
+            android:screenOrientation="landscape"/>
+
+        <activity android:name=".ui.TransProgressActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.ScanQRResultActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.ReceiveCoinActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.CopyOfTransSuccessActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.NewReceiverCoinActivity"
+            android:screenOrientation="landscape"></activity>"
+        <activity android:name=".ui.TradePauseActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.CopyOfTransFailedActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.ArFragmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ui.KeyboardActivity"
+            android:screenOrientation="landscape"/>        
+        
+        
+        <provider
+                android:name="com.mybitcoin.wallet.AddressBookProvider"
+                android:authorities="com.mybitcoin.wallet_test.address_book"
+                android:exported="false"/>
+        <provider
+                android:name="com.mybitcoin.wallet.ExchangeRatesProvider"
+                android:authorities="com.mybitcoin.wallet_test.exchange_rates"
+                android:exported="false"/>
+
+        <receiver
+                android:name="com.mybitcoin.wallet.WalletBalanceWidgetProvider"
+                android:label="Bitcoin Wallet Balance">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/wallet_balance_widget"/>
+        </receiver>
+
+        <service
+                android:name="com.mybitcoin.wallet.service.BlockchainServiceImpl"
+                android:exported="false"/>
+        <service
+                android:name="com.mybitcoin.wallet.offline.AcceptBluetoothService"
+                android:exported="false"/>
+        <service
+                android:name="com.mybitcoin.wallet.service.StartService"
+                android:exported="false"/>
+
+        <receiver android:name="com.mybitcoin.wallet.service.AutosyncReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        
+                <!-- umeng -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="54769a19fd98c5fd5e0014fc" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="JPY" />
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!-- umeng -->
+    </application>
+
+</manifest>

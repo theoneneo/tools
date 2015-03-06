@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+
+    >
+
+            <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="买入比特币"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_large" />
+    <TextView
+        android:layout_below="@id/txtTitle"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/font_size_large"
+        android:text="请选择提币方式"
+        />
+
+      
+  
+            <TextView
+                android:layout_below="@id/tip"
+        android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:id="@+id/btn_scanqr"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="扫描二维码"
+                android:textColor="@drawable/btn_color"
+                android:textSize="@dimen/font_size_normal"
+                android:background="@drawable/btn_normal"/>
+            <TextView
+                  android:layout_below="@id/btn_scanqr"
+        android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:id="@+id/btn_printwallet"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@drawable/btn_color"
+                android:text="打印纸钱包"
+                android:textSize="@dimen/font_size_normal"
+                android:background="@drawable/btn_normal"
+                />
+    
+       
+  <ImageView 
+           android:visibility="invisible"
+           android:id="@+id/imgLogo"
+    android:layout_width="200dp"
+    android:layout_height="55dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="20dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/newlogo"
+    />
+       
+       <LinearLayout
+         
+           android:layout_above="@id/imgLogo"
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+          
+            android:layout_centerHorizontal="true"
+            >
+            <TextView
+                android:id="@+id/btn_cancel"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="上一步"
+                android:textColor="@drawable/btn_color"
+                android:textSize="@dimen/font_size_normal"
+                android:background="@drawable/btn_normal3"/>
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/btn_confirm"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="450dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@drawable/btn_color"
+                android:textSize="@dimen/font_size_normal"
+               	android:text="确定"
+                android:background="@drawable/btn_normal3"
+                />
+       </LinearLayout>
+</RelativeLayout>

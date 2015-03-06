@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- AUTHOR: F, DATE: 2014.5.31 -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+ 
+    <TextView
+        android:id="@+id/trademode_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="@string/trademode_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_large" />
+
+    <TextView
+        android:id="@+id/trademode_bitcoin_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_normal"
+        android:textColor="@drawable/btn_color"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/trademode_bitcoin_btn"
+        android:textSize="@dimen/font_size_normal" />
+
+    <TextView
+        android:id="@+id/trademode_cash_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+       	android:background="@drawable/btn_normal"
+        android:textColor="@drawable/btn_color"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/trademode_bill_btn"
+        android:textSize="@dimen/font_size_normal" />
+
+    <TextView
+        android:id="@+id/trademode_qr_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_normal"
+        android:textColor="@drawable/btn_color"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/trademode_qr_btn"
+        android:textSize="@dimen/font_size_normal" />
+    
+	<TextView
+        android:id="@+id/trademode_cancel_btn"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_normal3"
+        android:textColor="@drawable/btn_color"
+        android:layout_gravity="left"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="@string/cancel_trade"
+        android:textSize="@dimen/font_size_normal" />
+
+</LinearLayout>

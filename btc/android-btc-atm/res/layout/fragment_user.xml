@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.bitwel.MainActivity$PlaceholderFragment" >
+    <TextView android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="30dp"
+        android:textSize="@dimen/font_size_normal"
+        android:text="@string/titleuser"
+        android:layout_marginTop="60dp"
+        />
+    <LinearLayout
+        android:id="@+id/pwlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/pwText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/userpw"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_normal" />
+
+        <EditText
+            android:id="@+id/pwEdit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ssidlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/pwlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/userText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_normal" />
+
+        <EditText
+            android:id="@+id/userEdit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/pklayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/pwlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/pkText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pubKey"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+            android:id="@+id/pkContent"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+			android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>    
+
+    <include
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        layout="@layout/progress_layout"
+        android:visibility="gone" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pwlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        layout="@layout/fragment_footer" />
+
+</RelativeLayout>

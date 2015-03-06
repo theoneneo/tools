@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+ 
+ 
+            <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="买入比特币"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_large" />
+
+     <TextView
+         android:id="@+id/tip"
+         android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_marginLeft="200dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/font_size_large"
+        android:text="请放入纸币"
+        />
+
+    <LinearLayout
+        android:layout_below="@id/tip"
+        android:layout_marginLeft="200dp"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:id="@+id/tvCurrentCashType"
+                android:text="当前币种：CNY"
+                android:textSize="32sp"
+              
+                />
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/current_coin_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:textColor="#000000"
+               
+                android:text=""
+android:textSize="32sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            >
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="28sp"
+                 android:layout_marginRight="2dp"
+				android:id="@+id/tvCurrentExchangeRate"
+                 android:text="汇率："
+
+                />
+            <com.mybitcoin.wallet.ui.CurrencyTextView
+                android:id="@+id/exchange_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+               android:textColor="#000000"
+                android:layout_centerVertical="true"
+
+                />
+
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="@dimen/font_size_normal"
+				android:id="@+id/tvCashValue"
+                android:text="@string/coins_amount"
+
+                />
+            <com.mybitcoin.wallet.ui.CurrencyAmountView
+                android:id="@+id/coins_amount_local"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                >
+                <TextView
+                    android:id="@+id/received_coins_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/font_size_normal"
+
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+
+                    />
+          </com.mybitcoin.wallet.ui.CurrencyAmountView>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="@dimen/font_size_normal"
+				android:id="@+id/tvCoinValue"
+                android:text="@string/bitcoins_amount"
+
+                />
+            <com.mybitcoin.wallet.ui.CurrencyAmountView
+                android:id="@+id/coins_amount_btc"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/bg_bright"
+                >
+                <TextView
+                    android:id="@+id/bitcoin_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/font_size_normal"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+
+                    />
+            </com.mybitcoin.wallet.ui.CurrencyAmountView>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tvWalletAddr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="@dimen/font_size_small"
+            android:text="@string/wallet_address_fragment_your"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/wallet_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="@dimen/font_size_small"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            />
+     </LinearLayout>
+     
+    
+    <ImageView 
+           android:visibility="invisible"
+           android:id="@+id/imgLogo"
+    android:layout_width="200dp"
+    android:layout_height="55dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="20dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/newlogo"
+    />
+       
+       <LinearLayout
+         
+           android:layout_above="@id/imgLogo"
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+          
+            android:layout_centerHorizontal="true"
+            >
+            <TextView
+                android:id="@+id/btn_prev"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="上一步"
+                android:textColor="@drawable/btn_color"
+                android:textSize="@dimen/font_size_normal"
+                android:background="@drawable/btn_normal3"/>
+            <TextView
+                android:id="@+id/btn_confirm"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="450dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@drawable/btn_color"
+                android:textSize="@dimen/font_size_normal"
+               	android:text="确定"
+                android:background="@drawable/btn_normal3"
+                />
+       </LinearLayout>
+</RelativeLayout>

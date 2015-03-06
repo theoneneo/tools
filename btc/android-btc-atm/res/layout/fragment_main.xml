@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bitwel.MainActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/scanresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_title" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_centerHorizontal="true"
+        style="@android:attr/spinnerDropDownItemStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/openscan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/openscan" />
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/openscan"
+        android:layout_centerHorizontal="true"
+        android:text="@string/connect" />
+
+</RelativeLayout>

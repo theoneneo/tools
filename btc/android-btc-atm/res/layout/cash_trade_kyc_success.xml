@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- AUTHOR: F, DATE: 2014.6.2 -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+            android:id="@+id/cashtrade_kycsuccess_tradetype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="@color/grange"
+            android:textSize="@dimen/font_size_large" />
+
+    <TextView
+        android:id="@+id/cashtrade_kycsuccess_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="165dp"
+        android:gravity="center"
+        android:text="@string/cashtrade_kycs_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_large" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="left"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/cashtrade_kycsuccess_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text="@string/cashtrade_kycs_info"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_normal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/cashtrade_kycsuccess_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/cashtrade_kycs_name_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_small" />
+
+                <TextView
+                    android:id="@+id/cashtrade_kycsuccess_name_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+<!--         <ImageView -->
+<!--             android:id="@+id/cashtrade_kycsuccess_img" -->
+<!--             android:layout_width="@dimen/wallet_address_qr_size_large" -->
+<!--             android:layout_height="@dimen/wallet_address_qr_size_large" -->
+<!--             android:layout_marginLeft="20dp" -->
+<!--             android:background="@drawable/qrcode_frame" -->
+<!--             android:focusable="true" -->
+<!--             android:scaleType="centerInside" /> -->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/cashtrade_kycsuccess_cnl_btn"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_normal3"
+            android:gravity="center"
+            android:text="@string/cancel_trade"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_small" />
+
+        <TextView
+            android:id="@+id/cashtrade_kycsuccess_cfm_btn"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="350dp"
+            android:background="@drawable/btn_normal3"
+            android:gravity="center"
+            android:text="@string/confirm_trade"
+            android:textColor="@drawable/btn_color"
+            android:textSize="@dimen/font_size_small" />
+    </LinearLayout>
+
+</LinearLayout>
