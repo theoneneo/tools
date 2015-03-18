@@ -63,8 +63,8 @@ public class L1000SDK {
 	private onDispenseListener monDispenseListener = null;
 
 
-    public void begin(int num) {            //¿ªÊ¼³ö³®Ïß³Ì
-        if(!init()) // Èô³õÊ¼»¯Ê§°Ü£¬ÔòÍË³ö
+    public void begin(int num) {            //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+        if(!init()) // ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
             return;
         dspsnum = num;
         mthread = new ComThread();
@@ -73,7 +73,7 @@ public class L1000SDK {
 
 
     public void end() {
-        closeSerialPort();        //¹Ø±Õ´®¿Ú
+        closeSerialPort();        //ï¿½Ø±Õ´ï¿½ï¿½ï¿½
         mSerialPort = null;
         if (mthread != null && !mthread.isInterrupted())
             mthread.interrupt();
@@ -81,13 +81,13 @@ public class L1000SDK {
 	
 	public interface onDispenseListener {
 		
-		//³ö³®Íê±Ï
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		public void onDispenseFinished();
 		
-		//´¦Àí´®¿Ú¶Áµ½µÄÊý¾Ý
+		//ï¿½ï¿½ï¿½?ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		public void onComRead(byte[] rxbuffer, int size);
 		
-		//³õÊ¼»¯´®¿Ú´íÎóÏÔÊ¾
+		//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 		public void onError(Exception e);
 		
 		public void onNotesNearEnd();
@@ -105,11 +105,11 @@ public class L1000SDK {
 		int combaudrate = 9600;
 		try {
 			if (mSerialPort == null)
-				mSerialPort = getSerialPort(compath, combaudrate); // ´ò¿ª´®¿Ú
+				mSerialPort = getSerialPort(compath, combaudrate); // ï¿½ò¿ª´ï¿½ï¿½ï¿½
 			if (mOutputStream == null)
-				mOutputStream = mSerialPort.getOutputStream(); // ´ò¿ªÊä³öÁ÷
+				mOutputStream = mSerialPort.getOutputStream(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (mInputStream == null)
-				mInputStream = mSerialPort.getInputStream(); // ´ò¿ªÊäÈëÁ÷
+				mInputStream = mSerialPort.getInputStream(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		} catch (SecurityException e) {
 			monDispenseListener.onError(e);
 			return false;
@@ -146,9 +146,9 @@ public class L1000SDK {
 	}
 	
 	/**
-	 * ´®¿ÚÏß³Ì£¬´®¿ÚÊä³öÃüÁî¿ØÖÆ³ö³®»ú£¬ÒÔ¼°´¦Àí½ÓÊÕµ½µÄÊý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
-	 * ³ö³®Íê±ÏºóÏß³Ì½áÊø
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïºï¿½ï¿½ß³Ì½ï¿½ï¿½ï¿½
 	 * 
 	 */
 	public class ComThread extends Thread {
@@ -183,8 +183,8 @@ public class L1000SDK {
 				datahandler(readbuffer, size);
 				super.sleep(500);
 				
-				while (dspsnum > 20) {
-					l1000dispense(20);
+				while (dspsnum > 10) {
+					l1000dispense(10);
 					super.sleep(1500);
 					size = mInputStream.read(readbuffer);
 					datahandler(readbuffer, size);
@@ -214,7 +214,7 @@ public class L1000SDK {
 					size = mInputStream.read(readbuffer);
 					datahandler(readbuffer, size);
 					super.sleep(500);
-					dspsnum -= 20;
+					dspsnum -= 10;
 					Log.i("dispense", "20");
 				}
 				l1000dispense(dspsnum);
@@ -259,25 +259,25 @@ public class L1000SDK {
 
 	}
 	
-	//´®¿ÚÊä³öpurgeÃüÁî£¬Çå³þ³ö³®»úÔ­ÓÐµÄÊý¾Ý
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½purgeï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½Ðµï¿½ï¿½ï¿½ï¿½
 	public void l1000purge() throws IOException {
 		byte[] sendbuffer = hexStringToBytes("06045002440311");
 		mOutputStream.write(sendbuffer);
 	}
 
-	//´®¿ÚÊä³östatusÃüÁî£¬²éÑ¯³ö³®»úµÄ×´Ì¬
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½statusï¿½ï¿½ï¿½î£¬ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	public void l1000status() throws IOException {
 		byte[] sendbuffer = hexStringToBytes("06045002460313");
 		mOutputStream.write(sendbuffer);
 	}
 
-	//´®¿ÚÊä³översionÃüÁî£¬²éÑ¯³ö³®»úµÄ°æ±¾
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½versionï¿½ï¿½ï¿½î£¬ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä°æ±¾
 	public void l1000version() throws IOException {
 		byte[] sendbuffer = hexStringToBytes("06045002470312");
 		mOutputStream.write(sendbuffer);
 	}
 	
-	//´®¿ÚÊä³ödispenseÃüÁî£¬³ö³®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dispenseï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½
 	public void l1000dispense(int notenum) throws IOException {
 		if (notenum >= 1 && notenum <= 20) {
 			byte[] sendbuffer = new byte[9];
@@ -296,7 +296,7 @@ public class L1000SDK {
 		}
 	}
 
-	//³ö³®ÃüÁî×îºóÒ»¸öÐ£ÑébyteµÄÉú³É
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ð£ï¿½ï¿½byteï¿½ï¿½ï¿½ï¿½ï¿½
 	public byte XOR(byte[] buffer) {
 		int ans = buffer[1];
 		for (int i = 2; i < buffer.length - 1; i++) {
