@@ -102,25 +102,14 @@ public class CashTradeCheckPaymentActivity extends WalletActivityTimeoutBase {
         }
     }
 
-    private void determinePaymentTypeAtPayingState(final CashTradeInfoLog cashTradeInfoLog) {
-
-		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Test");
-		b.setMessage("交易金额："+ cashTradeInfoLog.getCashStr()+ "\n"+ "快速支付现金阈"+ String.valueOf(getSettingInfo().getQuickPaymentCashThreshold()));
-		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-		        // 如果交易金额小于QuickPaymentCashThreshold，则直接出钞（进入出钞页面）
-		        if (Integer.parseInt(cashTradeInfoLog.getCashStr()) <= getSettingInfo().getQuickPaymentCashThreshold()) {
-		            cashTradeInfoLog.setPayedState(); // 忽略confidence检查，直接设置为PAYED状态
-		            cashTradeInfoLog.startActivityFromActivity(CashTradeCheckPaymentActivity.this, CashTradeCheckingoutActivity.class);
-		        } else { // 否则产生提款二维码，延迟出钞（进入提款二维码显示页面）
-		            cashTradeInfoLog.startActivityFromActivity(CashTradeCheckPaymentActivity.this, CashTradeShowCashQrActivity.class);
-		        }
-			}
-		});
-		b.show();
-    	
-
+    private void determinePaymentTypeAtPayingState(CashTradeInfoLog cashTradeInfoLog) {
+		// 如果交易金额小于QuickPaymentCashThreshold，则直接出钞（进入出钞页面）
+		if (Integer.parseInt(cashTradeInfoLog.getCashStr()) <= getSettingInfo().getQuickPaymentCashThreshold()) {
+			cashTradeInfoLog.setPayedState(); // 忽略confidence检查，直接设置为PAYED状态
+			cashTradeInfoLog.startActivityFromActivity(CashTradeCheckPaymentActivity.this, CashTradeCheckingoutActivity.class);
+		} else { // 否则产生提款二维码，延迟出钞（进入提款二维码显示页面）
+			cashTradeInfoLog.startActivityFromActivity(CashTradeCheckPaymentActivity.this, CashTradeShowCashQrActivity.class);
+		}
     }
 
     @Override
